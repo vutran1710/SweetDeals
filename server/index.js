@@ -3,7 +3,6 @@ import indexRouter from './routes/index'
 
 const app = express()
 const router = express.Router()
-
 const port = 3000
 
 app.use(indexRouter)
