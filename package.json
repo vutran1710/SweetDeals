@@ -4,9 +4,9 @@
   "description": "wt",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node fuse",
+    "prod": "NODE_ENV=prod node fuse",
     "be_serve": "nodemon --exec babel-node server/index.js",
-    "fe_serve": "node fuse",
     "be_test": "NODE_ENV=test mocha --compilers js:@babel/register --recursive 'server/test/'"
   },
   "author": "vutr",
