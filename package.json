@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "nodemon --exec babel-node server/index.js"
+    "serve": "nodemon --exec babel-node server/index.js",
+    "be_test": "NODE_ENV=test mocha --compilers js:@babel/register --recursive 'server/test/'"
   },
-  "author": "",
+  "author": "vutr",
   "license": "ISC",
   "dependencies": {
     "express": "^4.16.3",
@@ -20,6 +21,10 @@
     "@babel/node": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
-    "nodemon": "^1.18.4"
+    "@babel/register": "^7.0.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.4",
+    "supertest": "^3.3.0"
   }
 }
