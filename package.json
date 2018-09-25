@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node fuse",
     "prod": "NODE_ENV=production run-s prebuild fe_build be_build be_run_build",
-    "be_serve": "nodemon --exec babel-node server/index.js",
+    "be_serve": "nodemon --inspect --exec babel-node server/index.js",
     "be_test": "NODE_ENV=test mocha --compilers js:@babel/register --recursive 'server/test/'",
     "be_build": "babel -d ./build/server ./server",
     "fe_build": "node fuse build",
@@ -14,7 +14,9 @@
     "prebuild": "rm -rf build/*"
   },
   "dependencies": {
+    "es6-template-strings": "^2.0.1",
     "express": "^4.16.3",
+    "fuse-react": "^1.0.21",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router-dom": "^4.3.1"
