@@ -13,6 +13,12 @@
     "be_run_build": "node ./build/server/index.js",
     "prebuild": "rm -rf build/*"
   },
+  "dependencies": {
+    "express": "^4.16.3",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-router-dom": "^4.3.1"
+  },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
