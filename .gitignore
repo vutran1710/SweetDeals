@@ -2,5 +2,4 @@
 node_modules
 .db
 .fusebox
-build/*.js
-build/*.js.map
+build
