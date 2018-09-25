@@ -5,16 +5,13 @@
   "main": "index.js",
   "scripts": {
     "start": "node fuse",
-    "prod": "NODE_ENV=prod node fuse",
+    "prod": "NODE_ENV=production run-s prebuild fe_build be_build be_run_build",
     "be_serve": "nodemon --exec babel-node server/index.js",
-    "be_test": "NODE_ENV=test mocha --compilers js:@babel/register --recursive 'server/test/'"
-  },
-  "author": "vutr",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.16.3",
-    "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "be_test": "NODE_ENV=test mocha --compilers js:@babel/register --recursive 'server/test/'",
+    "be_build": "babel -d ./build/server ./server",
+    "fe_build": "node fuse build",
+    "be_run_build": "node ./build/server/index.js",
+    "prebuild": "rm -rf build/*"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
@@ -28,6 +25,7 @@
     "mocha": "^5.2.0",
     "node-sass": "^4.9.3",
     "nodemon": "^1.18.4",
+    "npm-run-all": "^4.1.3",
     "supertest": "^3.3.0",
     "typescript": "^3.0.3",
     "uglify-es": "^3.3.9",
