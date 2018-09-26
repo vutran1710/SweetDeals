@@ -2,12 +2,8 @@ const {
   SassPlugin,
   CSSPlugin,
   CSSResourcePlugin,
-  QuantumPlugin,
-  CopyPlugin,
-  WebIndexPlugin
+  QuantumPlugin
 } = require("fuse-box")
-
-const assetExtension = 'jpg.png.svg'.split('.').map(ext => `client/asset/*.${ext}`)
 
 module.exports = function FrontendConfig (isProduction) {
   this.isProduction = isProduction
@@ -18,17 +14,6 @@ module.exports = function FrontendConfig (isProduction) {
       React: "react"
     },
     plugins: [
-      WebIndexPlugin({
-        template: "client/index.html",
-        author: "W-Team",
-        charset: "utf-8",
-        description: "an awesome project",
-        keywords: "vutr, w-team"
-      }),
-      CopyPlugin({
-        files: assetExtension,
-        dest: "build/asset"
-      }),
       [
         SassPlugin(),
         CSSPlugin({
