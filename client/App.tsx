@@ -1,4 +1,6 @@
+import * as React from 'react'
 import { render } from 'react-dom'
+
 import Calculator from '@container/Calculator'
 import '@style/app.scss'
 

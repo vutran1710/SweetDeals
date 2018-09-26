@@ -1,4 +1,4 @@
-import express from 'express'
+import * as express from 'express'
 
 const router = express.Router()
 
@@ -8,4 +8,4 @@ const getIndex = (req, res) => {
 
 router.get('/', getIndex)
 
-export default router
+export const indexRouter = router
