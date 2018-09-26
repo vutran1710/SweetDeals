@@ -5,14 +5,6 @@
   "main": "index.js",
   "scripts": {
     "start": "node -r ts-node/register --inspect fuse.ts",
-    "be_serve": "node fuse.ts be_serve",
-    "fe_serve": "node fuse.ts fe_serve",
-    "be_test": "NODE_ENV=test mocha --compilers js:@babel/register --recursive 'server/test/'",
-    "prod": "NODE_ENV=production run-s prebuild fe_build be_build be_run_build",
-    "prebuild": "rm -rf build/*",
-    "fe_build": "node fuse build",
-    "be_build": "babel -d ./build/server ./server",
-    "be_run_build": "node ./build/server/index.js",
     "lint": "tslint -c tslint.json '{client,server}/**/*.{ts,tsx}'"
   },
   "dependencies": {
