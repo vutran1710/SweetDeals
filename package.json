@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node fuse",
-    "prod": "NODE_ENV=production run-s prebuild fe_build be_build be_run_build",
-    "be_serve": "nodemon --inspect --exec babel-node server/index.js",
+    "be_serve": "node fuse be_serve",
+    "fe_serve": "node fuse fe_serve",
     "be_test": "NODE_ENV=test mocha --compilers js:@babel/register --recursive 'server/test/'",
-    "be_build": "babel -d ./build/server ./server",
+    "prod": "NODE_ENV=production run-s prebuild fe_build be_build be_run_build",
+    "prebuild": "rm -rf build/*",
     "fe_build": "node fuse build",
-    "be_run_build": "node ./build/server/index.js",
-    "prebuild": "rm -rf build/*"
+    "be_build": "babel -d ./build/server ./server",
+    "be_run_build": "node ./build/server/index.js"
   },
   "dependencies": {
     "es6-template-strings": "^2.0.1",

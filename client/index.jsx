@@ -1,13 +1,10 @@
-import { render } from 'react-dom'
-import Calculator from '@container/Calculator'
+import { renderToString } from 'react-dom/server'
 
-const App = () => (
+const Index = () => (
   <div>
     <h2>Hello World</h2>
-    <Calculator />
+    <a href="/calc">Click to open calculator</a>
   </div>
 )
 
-const mountPoint = document.getElementById('root')
-
-render(<App />, mountPoint)
+export default renderToString(Index)

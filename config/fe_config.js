@@ -12,8 +12,11 @@ const assetExtension = 'jpg.png.svg'.split('.').map(ext => `client/asset/*.${ext
 module.exports = function FrontendConfig (isProduction) {
   this.isProduction = isProduction
   return {
-    target: "browser@es5",
+    target: "browser",
     hash: this.isProduction,
+    autoImport: {
+      React: "react"
+    },
     plugins: [
       WebIndexPlugin({
         template: "client/index.html",
@@ -47,16 +50,6 @@ module.exports = function FrontendConfig (isProduction) {
       inline: false,
       project: !this.isProduction,
       vendor: false
-    },
-    autoImport: {
-      React: "react"
-    },
-    alias: {
-      "@base": "~/client/component/base",
-      "@container": "~/client/component/container",
-      "@fe-service": "~/client/service/frontend",
-      "@be-service": "~/client/service/backend",
-      "@style": "~/client/style",
-      "@constant": "~/client/manage/constant.js"
     }
-}}
+  }
+}
