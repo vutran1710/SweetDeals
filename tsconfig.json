@@ -1,13 +1,12 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "ESNext",
+    "target": "esnext",
     "sourceMap": true,
-    "inlineSources": true,
     "jsx": "react",
     "importHelpers": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true
-  }
+    "experimentalDecorators": true
+  },
+  "exclude": ["node_modules", "fuse.ts"]
 }

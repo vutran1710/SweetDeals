@@ -1,11 +1,11 @@
-const {
+import {
   SassPlugin,
   CSSPlugin,
   CSSResourcePlugin,
   QuantumPlugin
-} = require("fuse-box")
+} from 'fuse-box'
 
-module.exports = function FrontendConfig (isProduction) {
+export function FrontendConfig(isProduction) {
   this.isProduction = isProduction
   return {
     target: "browser",

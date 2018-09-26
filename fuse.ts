@@ -1,7 +1,8 @@
-const { FuseBox, WebIndexPlugin, CopyPlugin } = require('fuse-box')
-const { src, task, watch } = require('fuse-box/sparky')
-const FrontendConfig = require('./config/fe_config')
-const ServerConfig = require('./config/be_config')
+import { FuseBox, WebIndexPlugin, CopyPlugin } from 'fuse-box'
+import { src, task, watch } from 'fuse-box/sparky'
+import { FrontendConfig } from './config/fe_config'
+import { ServerConfig } from './config/be_config'
+
 const baseConfig = {
   homeDir: '.',
   output: 'build/$name.js',
@@ -39,28 +40,28 @@ const servingStatic = () => {
   fuse.run()
 }
 
-const backendServe = (port = 3000, isProduction) => () => {
-  const serverConfig = new ServerConfig(isProduction)
+const backendServe = (port = 3000, isProduction = false) => () => {
+  const serverConfig = ServerConfig(isProduction)
   const fuseConfig = { ...baseConfig, ...serverConfig }
   const fuse = FuseBox.init(fuseConfig)
   fuse.dev({ port, httpServer: false });
   fuse.bundle('server/bundle')
-      .watch('server/**')
-      .instructions('> [server/index.js]')
-      .completed(proc => proc.start())
+    .watch('server/**')
+    .instructions('> [server/index.tsx]')
+    .completed(proc => proc.start())
   fuse.run()
 }
 
-const frontendServe = (shouldRunDev, isProduction) => {
-  return async function () {
-    const frontendConfig = new FrontendConfig(isProduction)
+const frontendServe = (shouldRunDev = false, isProduction = false) => {
+  return async function() {
+    const frontendConfig = FrontendConfig(isProduction)
     const fuseConfig = { ...baseConfig, ...frontendConfig }
     const fuse = FuseBox.init(fuseConfig)
     shouldRunDev && fuse.dev();
     fuse.bundle('client/bundle')
       .watch('client/**')
       .hmr()
-      .instructions('> client/App.jsx')
+      .instructions('> client/App.tsx')
     return await fuse.run()
   }
 }
