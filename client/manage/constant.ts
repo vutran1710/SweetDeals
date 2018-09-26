@@ -1,17 +1,21 @@
 export const OPS = {
-  add: '+', subtract: '-', multiply: 'x', divide: '/',
+  add: '+',
+  divide: '/',
+  multiply: 'x',
+  subtract: '-'
 }
 
 export const ERROR_MSG = [
   'Unsupported request',
   'Server Error',
-  'Invalid Calculation',
+  'Invalid Calculation'
 ]
 
 export const DEFAULT_STATE = {
   a: '0',
   b: '0',
-  operand: null,
-  display: '0',
+
   activeValue: 'a',
+  display: '0',
+  operand: null
 }

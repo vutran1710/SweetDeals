@@ -1,13 +1,14 @@
+import * as React from 'react'
 import { render } from 'react-dom'
+
 import Calculator from '@container/Calculator'
+import '@style/app.scss'
 
 const App = () => (
   <div>
-    <h2>Hello World</h2>
     <Calculator />
   </div>
 )
 
-const mountPoint = document.getElementById('root')
-
-render(<App />, mountPoint)
+const mount = document.getElementById('root')
+render(<App />, mount)

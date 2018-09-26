@@ -1,5 +1,4 @@
 import { OPS, ERROR_MSG, DEFAULT_STATE } from '@constant'
-import '@style/app.scss'
 
 class Calculator extends React.Component {
   state = DEFAULT_STATE

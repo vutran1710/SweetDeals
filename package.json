@@ -4,14 +4,16 @@
   "description": "wt",
   "main": "index.js",
   "scripts": {
-    "start": "node fuse",
-    "prod": "NODE_ENV=production run-s prebuild fe_build be_build be_run_build",
-    "be_serve": "nodemon --exec babel-node server/index.js",
-    "be_test": "NODE_ENV=test mocha --compilers js:@babel/register --recursive 'server/test/'",
-    "be_build": "babel -d ./build/server ./server",
-    "fe_build": "node fuse build",
-    "be_run_build": "node ./build/server/index.js",
-    "prebuild": "rm -rf build/*"
+    "start": "node -r ts-node/register --inspect fuse.ts",
+    "lint": "tslint -c tslint.json '{client,server}/**/*.{ts,tsx}'"
+  },
+  "dependencies": {
+    "es6-template-strings": "^2.0.1",
+    "express": "^4.16.3",
+    "fuse-react": "^1.0.21",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-router-dom": "^4.3.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
@@ -20,6 +22,10 @@
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.0.0",
+    "@types/express": "^4.16.0",
+    "@types/node": "^10.11.0",
+    "@types/react": "^16.4.14",
+    "@types/react-dom": "^16.0.7",
     "chai": "^4.1.2",
     "fuse-box": "^3.5.0",
     "mocha": "^5.2.0",
@@ -27,6 +33,9 @@
     "nodemon": "^1.18.4",
     "npm-run-all": "^4.1.3",
     "supertest": "^3.3.0",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.11.0",
+    "tslint-react": "^3.6.0",
     "typescript": "^3.0.3",
     "uglify-es": "^3.3.9",
     "uglify-js": "^3.4.9"
