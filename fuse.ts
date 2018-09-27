@@ -7,11 +7,14 @@ import { FrontendConfig } from './config/fe_config'
 const baseConfig = {
   alias: {
     '@base': '~/client/component/base',
-    '@be-service': '~/client/service/backend',
-    '@constant': '~/client/manage/constant.js',
     '@container': '~/client/component/container',
+
+    '@be-service': '~/client/service/backend',
     '@fe-service': '~/client/service/frontend',
-    '@style': '~/client/style'
+    '@style': '~/client/style',
+
+    '@constant': '~/common/constant.ts',
+    '@fp': '~/common/fp.ts'
   },
   homeDir: '.',
   output: 'build/$name.js',

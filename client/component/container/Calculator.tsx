@@ -1,6 +1,7 @@
+import * as React from 'react'
 import { OPS, ERROR_MSG, DEFAULT_STATE } from '@constant'
 
-class Calculator extends React.Component {
+export class Calculator extends React.Component {
   state = DEFAULT_STATE
 
   setOperand = operand => () => this.state.activeValue === 'a' && this.setState({
@@ -111,5 +112,3 @@ class Calculator extends React.Component {
     )
   }
 }
-
-export default Calculator
