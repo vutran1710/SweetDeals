@@ -7,7 +7,7 @@ export class Calculator extends React.Component {
   setOperand = operand => () => this.state.activeValue === 'a' && this.setState({
     operand,
     activeValue: 'b',
-    display: '0',
+    display: '0'
   })
 
   appendValue = btn => () => {
@@ -66,7 +66,12 @@ export class Calculator extends React.Component {
 
   render() {
     const {
-      appendValue, setOperand, submit, reset, changeSign, state,
+      appendValue,
+      setOperand,
+      submit,
+      reset,
+      changeSign,
+      state
     } = this
     const subDisplay = `${state.a || ''} ${OPS[state.operand] || ''} ${state.b || ''}`
     return (
