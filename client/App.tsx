@@ -1,14 +1,13 @@
 import * as React from 'react'
-import { render } from 'react-dom'
-
-import Calculator from '@container/Calculator'
+import * as ReactDOM from 'react-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { LandingPage } from './LandingPage'
 import '@style/app.scss'
 
-const App = () => (
-  <div>
-    <Calculator />
-  </div>
+const jsx = (
+  <Router>
+    <LandingPage />
+  </Router>
 )
 
-const mount = document.getElementById('root')
-render(<App />, mount)
+ReactDOM.hydrate(jsx, document.getElementById('root'))
