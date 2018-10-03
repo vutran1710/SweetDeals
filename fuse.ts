@@ -1,23 +1,9 @@
 import { CopyPlugin, FuseBox, WebIndexPlugin } from 'fuse-box'
-import { src, task, watch } from 'fuse-box/sparky'
+import { context, src, task, watch } from 'fuse-box/sparky'
 
+import { BaseConfig } from './config/base_config'
 import { ServerConfig } from './config/be_config'
 import { FrontendConfig } from './config/fe_config'
-
-const baseConfig = {
-  alias: {
-    '@base': '~/client/component/base',
-    '@container': '~/client/component/container',
-    '@be-service': '~/client/service/backend',
-    '@fe-service': '~/client/service/frontend',
-    '@style': '~/client/style',
-    '@constant': '~/common/constant',
-    '@fp': '~/common/fp'
-  },
-  homeDir: '.',
-  output: 'build/$name.js',
-  useTypescriptCompiler: true
-}
 
 /* Define tasks and functions and flow-through fuse instance */
 const servingStatic = () => {
@@ -43,7 +29,7 @@ const servingStatic = () => {
 
 const backendServe = (port = 3000, isProduction = false) => () => {
   const serverConfig = ServerConfig(isProduction)
-  const fuseConfig = { ...baseConfig, ...serverConfig }
+  const fuseConfig = { ...BaseConfig, ...serverConfig }
   const fuse = FuseBox.init(fuseConfig)
   fuse.dev({ port, httpServer: false })
   fuse.bundle('server/bundle')
@@ -55,7 +41,7 @@ const backendServe = (port = 3000, isProduction = false) => () => {
 
 const frontendServe = (shouldRunDev = false, isProduction = false) => () => {
   const frontendConfig = FrontendConfig(isProduction)
-  const fuseConfig = { ...baseConfig, ...frontendConfig }
+  const fuseConfig = { ...BaseConfig, ...frontendConfig }
   const fuse = FuseBox.init(fuseConfig)
   if (shouldRunDev) {
     fuse.dev()
