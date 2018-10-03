@@ -9,7 +9,8 @@ const isProd = process.env.NODE_ENV === 'production'
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use("/static", express.static(path.resolve("build/asset")))
+app.use("/client", express.static(path.resolve("build/client")))
+app.use("/asset", express.static(path.resolve("build/asset")))
 app.use(indexRouter)
 
 Loadable.preloadAll().then(() => {
