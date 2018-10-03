@@ -4,13 +4,13 @@ import * as Loadable from 'react-loadable'
 import { indexRouter } from './routes/indexRouter'
 
 const app = express()
-const port = 3000
+const port = process.env.PORT
 const isProd = process.env.NODE_ENV === 'production'
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
-app.use("/client", express.static(path.resolve("build/client")))
-app.use("/asset", express.static(path.resolve("build/asset")))
+app.use('/client', express.static(path.resolve('build/client')))
+app.use('/asset', express.static(path.resolve('build/asset')))
 app.use(indexRouter)
 
 Loadable.preloadAll().then(() => {

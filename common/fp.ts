@@ -36,3 +36,5 @@ export const flush = options => obj => {
 
 // Resolve 2nd/3rd arguments when first argument is truthy
 export const when = arg1 => arg2 => arg1 ? arg2 : null
+
+export const assign = (src, dest) => Object.assign(src, dest)
