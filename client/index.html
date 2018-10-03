@@ -6,15 +6,13 @@
     $charset
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/x-icon" href="/asset/favicon.ico">
-    <link rel="stylesheet" type="text/css" href="/client/app.css">
+    $css
     $description
     $author
     $keywords
   </head>
   <body>
-    <div id="root">
-      ${renderApp}
-    </div>
+    <div id="root">${renderApp}</div>
     $bundles
   </body>
 </html>

@@ -1,34 +1,34 @@
 import {
   CSSPlugin,
-  CSSResourcePlugin,
   QuantumPlugin,
   SassPlugin,
   WebIndexPlugin
 } from 'fuse-box'
 
-export function FrontendConfig(isProduction) {
-  this.isProduction = isProduction
+export function FrontendConfig(isProduction = false) {
   return {
-    target: 'browser',
-    hash: this.isProduction,
-    autoImport: {
-      React: 'react'
-    },
+    homeDir: '.',
+    output: 'build/$name',
+    target: 'browser@esnext',
+    hash: isProduction,
+    cache: !isProduction,
     plugins: [
       WebIndexPlugin({
-        async: true,
-        target: 'build/index.html',
-        template: 'build/index.html'
+        author: 'W-Team',
+        charset: 'utf-8',
+        description: 'an awesome project',
+        keywords: 'vutr, w-team',
+        template: 'client/index.html'
       }),
       [
         SassPlugin(),
         CSSPlugin({
-          group: 'app.css',
-          outFile: 'build/client/app.css',
-          minify: this.isProduction
+          inject: file => `${file}`,
+          outFile: file => `build/${file}`,
+          minify: isProduction
         })
       ],
-      this.isProduction && QuantumPlugin({
+      isProduction && QuantumPlugin({
         bakeApiIntoBundle: 'client/bundle',
         css: true,
         ensureES5: true,
@@ -37,10 +37,15 @@ export function FrontendConfig(isProduction) {
         uglify: true
       })
     ],
-    sourceMaps: !this.isProduction && {
-      inline: false,
-      project: !this.isProduction,
-      vendor: false
+    sourceMaps: !isProduction,
+    alias: {
+      '@base': '~/client/component/base',
+      '@container': '~/client/component/container',
+      '@be-service': '~/client/service/backend',
+      '@fe-service': '~/client/service/frontend',
+      '@style': '~/client/style',
+      '@constant': '~/common/constant',
+      '@fp': '~/common/fp'
     }
   }
 }
