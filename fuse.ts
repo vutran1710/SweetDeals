@@ -8,13 +8,11 @@ const baseConfig = {
   alias: {
     '@base': '~/client/component/base',
     '@container': '~/client/component/container',
-
     '@be-service': '~/client/service/backend',
     '@fe-service': '~/client/service/frontend',
     '@style': '~/client/style',
-
-    '@constant': '~/common/constant.ts',
-    '@fp': '~/common/fp.ts'
+    '@constant': '~/common/constant',
+    '@fp': '~/common/fp'
   },
   homeDir: '.',
   output: 'build/$name.js',
@@ -52,10 +50,10 @@ const backendServe = (port = 3000, isProduction = false) => () => {
     .watch('server/**')
     .instructions('> [server/index.tsx]')
     .completed(proc => proc.start())
-  fuse.run()
+  return fuse.run()
 }
 
-const frontendServe = (shouldRunDev = false, isProduction = false) => async () => {
+const frontendServe = (shouldRunDev = false, isProduction = false) => () => {
   const frontendConfig = FrontendConfig(isProduction)
   const fuseConfig = { ...baseConfig, ...frontendConfig }
   const fuse = FuseBox.init(fuseConfig)
@@ -77,8 +75,4 @@ task('be_serve', ['clean_be', 'static'], backendServe())
 task('static', servingStatic)
 
 /* Default task: use fuse to run both server and client in dev mode */
-task('default', ['clean_all', 'static'], () => {
-  const bundleFrontend = frontendServe()
-  const bundleBackend = backendServe()
-  bundleFrontend().then(bundleBackend)
-})
+task('default', ['clean_all', 'static', 'fe_serve', 'be_serve'])
