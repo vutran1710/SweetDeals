@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { OPS, ERROR_MSG, DEFAULT_STATE } from '@constant'
+import { OPS, ERROR_MSG, DEFAULT_STATE } from 'common/constant'
 
 export class Calculator extends React.Component {
   state = DEFAULT_STATE
@@ -20,7 +20,9 @@ export class Calculator extends React.Component {
   changeSign = () => {
     const { activeValue } = this.state
     const currentNumber = this.state[activeValue]
-    if (currentNumber === '0') return
+    if (currentNumber === '0') {
+      return
+    }
     const val = currentNumber[0] === '-' ? currentNumber.slice(1) : `-${currentNumber}`
     this.setState({ [activeValue]: val, display: val })
   }
@@ -28,7 +30,7 @@ export class Calculator extends React.Component {
   reset = () => this.setState(DEFAULT_STATE)
 
   submit = () => {
-    const serverResponseHandler = (res) => {
+    const serverResponseHandler = res => {
       if (res.error) {
         throw res.error
       }
@@ -41,7 +43,7 @@ export class Calculator extends React.Component {
 
     const errorHandler = display => this.setState({
       ...DEFAULT_STATE,
-      display: typeof display === 'string' ? display : ERROR_MSG[1],
+      display: typeof display === 'string' ? display : ERROR_MSG[1]
     })
 
     const requestOptions = {
@@ -49,11 +51,9 @@ export class Calculator extends React.Component {
       body: JSON.stringify({
         a: parseInt(this.state.a, 10),
         b: parseInt(this.state.b, 10),
-        operand: this.state.operand,
+        operand: this.state.operand
       }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers: { 'Content-Type': 'application/json' }
     }
 
     const url = 'http://localhost:3000/calc'
@@ -65,15 +65,8 @@ export class Calculator extends React.Component {
   }
 
   render() {
-    const {
-      appendValue,
-      setOperand,
-      submit,
-      reset,
-      changeSign,
-      state
-    } = this
-    const subDisplay = `${state.a || ''} ${OPS[state.operand] || ''} ${state.b || ''}`
+    const { a, b, operand, display } = this.state
+    const subDisplay = `${a || ''} ${OPS[operand] || ''} ${b || ''}`
     return (
       <div className="container">
         <div className="calc-body">
@@ -81,36 +74,36 @@ export class Calculator extends React.Component {
             <div className="calc-typed">{subDisplay}</div>
           </div>
           <div className="calc-screen">
-            <div className="calc-typed">{this.state.display}</div>
+            <div className="calc-typed">{display}</div>
           </div>
           <div className="calc-button-row">
-            <div className="button c" onClick={reset}>AC</div>
-            <div className="button l" onClick={changeSign}>+/-</div>
-            <div className="button l" onClick={setOperand('percent')}>%</div>
-            <div className="button l" onClick={setOperand('divide')}>/</div>
+            <div className="button c" onClick={this.reset}>AC</div>
+            <div className="button l" onClick={this.changeSign}>+/-</div>
+            <div className="button l" onClick={this.setOperand('percent')}>%</div>
+            <div className="button l" onClick={this.setOperand('divide')}>/</div>
           </div>
           <div className="calc-button-row">
-            <div className="button" onClick={appendValue('7')}>7</div>
-            <div className="button" onClick={appendValue('8')}>8</div>
-            <div className="button" onClick={appendValue('9')}>9</div>
-            <div className="button l" onClick={setOperand('multiply')}>x</div>
+            <div className="button" onClick={this.appendValue('7')}>7</div>
+            <div className="button" onClick={this.appendValue('8')}>8</div>
+            <div className="button" onClick={this.appendValue('9')}>9</div>
+            <div className="button l" onClick={this.setOperand('multiply')}>x</div>
           </div>
           <div className="calc-button-row">
-            <div className="button" onClick={appendValue('4')}>4</div>
-            <div className="button" onClick={appendValue('5')}>5</div>
-            <div className="button" onClick={appendValue('6')}>6</div>
-            <div className="button l" onClick={setOperand('subtract')}>−</div>
+            <div className="button" onClick={this.appendValue('4')}>4</div>
+            <div className="button" onClick={this.appendValue('5')}>5</div>
+            <div className="button" onClick={this.appendValue('6')}>6</div>
+            <div className="button l" onClick={this.setOperand('subtract')}>−</div>
           </div>
           <div className="calc-button-row">
-            <div className="button" onClick={appendValue('1')}>1</div>
-            <div className="button" onClick={appendValue('2')}>2</div>
-            <div className="button" onClick={appendValue('3')}>3</div>
-            <div className="button l" onClick={setOperand('add')}>+</div>
+            <div className="button" onClick={this.appendValue('1')}>1</div>
+            <div className="button" onClick={this.appendValue('2')}>2</div>
+            <div className="button" onClick={this.appendValue('3')}>3</div>
+            <div className="button l" onClick={this.setOperand('add')}>+</div>
           </div>
           <div className="calc-button-row">
-            <div className="button half" onClick={appendValue('0')}>0</div>
+            <div className="button half" onClick={this.appendValue('0')}>0</div>
             <div className="button">.</div>
-            <div className="button l" onClick={submit}>=</div>
+            <div className="button l" onClick={this.submit}>=</div>
           </div>
         </div>
       </div>
