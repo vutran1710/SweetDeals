@@ -21,7 +21,7 @@ const backendServe = () => {
 const frontendServe = () => {
   const config = FrontendConfig(envVars.NODE_ENV === 'production')
   const fuse = FuseBox.init(config)
-  fuse.dev({ httpServer: false, hmr: true, port: 4445 })
+  fuse.dev({ httpServer: false, hmr: true, port: 4444 })
   fuse.bundle('client/bundle')
     .watch('client/**')
     .hmr()

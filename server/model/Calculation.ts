@@ -1,6 +1,6 @@
 import * as mongoose from 'mongoose'
 
-export const Calculation = mongoose.Schema({
+const CalculationSchema = mongoose.Schema({
   operand: {
     type: 'String',
     required: true
@@ -22,3 +22,5 @@ export const Calculation = mongoose.Schema({
     required: true
   }
 })
+
+export const Calculation = mongoose.model('Calculation', CalculationSchema)

@@ -10,7 +10,7 @@ export function BackendConfig(envVars) {
     homeDir: '.',
     output: 'build/$name.js',
     target: 'server@esnext',
-    cache: false,
+    cache: !isProduction,
     hash: isProduction,
     plugins: [
       JSONPlugin(),

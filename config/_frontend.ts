@@ -11,7 +11,7 @@ export function FrontendConfig(isProduction = false) {
     output: 'build/$name',
     target: 'browser@esnext',
     hash: isProduction,
-    cache: false,
+    cache: !isProduction,
     plugins: [
       WebIndexPlugin({
         author: 'W-Team',
