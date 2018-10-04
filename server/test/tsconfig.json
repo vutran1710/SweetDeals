@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "../../",
+    "paths": {
+      "common/*": ["common/*"],
+      "@base/*": ["client/component/base/*"],
+      "@container/*": ["client/component/container/*"]
+    },
+    "module": "commonjs",
+    "target": "esnext",
+    "sourceMap": true,
+    "jsx": "react",
+    "importHelpers": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  }
+}
