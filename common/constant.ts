@@ -8,7 +8,8 @@ export const OPS = {
 export const ERROR_MSG = [
   'Unsupported request',
   'Server Error',
-  'Invalid Calculation'
+  'Invalid Calculation',
+  'Cannot connect to database'
 ]
 
 export const DEFAULT_STATE = {
