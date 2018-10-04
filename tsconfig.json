@@ -1,13 +1,6 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {
-      "@base": ["client/component/base"],
-      "@container": ["client/component/container"],
-      "@be-service": ["client/service/backend"],
-      "@fe-service": ["client/service/frontend"],
-      "@style": ["client/style"]
-    },
     "module": "commonjs",
     "target": "esnext",
     "sourceMap": true,

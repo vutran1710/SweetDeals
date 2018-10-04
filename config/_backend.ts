@@ -10,12 +10,21 @@ export function BackendConfig(envVars) {
     homeDir: '.',
     output: 'build/$name.js',
     target: 'server@esnext',
-    cache: !isProduction,
+    cache: false,
     hash: isProduction,
     plugins: [
       JSONPlugin(),
       EnvPlugin(envVars),
       isProduction && UglifyJSPlugin()
-    ]
+    ],
+    alias: {
+      '@base': '~/client/component/base',
+      '@container': '~/client/component/container',
+      '@be-service': '~/client/service/backend',
+      '@fe-service': '~/client/service/frontend',
+      '@style': '~/client/style',
+      '@constant': '~/common/constant',
+      '@fp': '~/common/fp'
+    }
   }
 }
