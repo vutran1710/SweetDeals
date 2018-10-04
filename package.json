@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node -r ts-node/register --inspect fuse.ts",
     "lint": "tslint -c tslint.json '{client,server}/**/*.{ts,tsx}'",
-    "test": "ts-mocha --project server/test/tsconfig.json -r tsconfig-paths/register 'server/test/*.spec.ts'"
+    "test": "ts-mocha --project server/test/tsconfig.json -r tsconfig-paths/register 'server/test/*.spec.ts'",
+    "verify": "run-s lint test"
   },
   "dependencies": {
     "@types/express": "^4.16.0",
