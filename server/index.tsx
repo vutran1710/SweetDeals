@@ -6,9 +6,8 @@ import { indexRouter, calcRouter } from './routes'
 
 const app = express()
 const port = process.env.PORT
-const mongoPort = process.env.MONGO_PORT
+const isProd = process.env.NODE_ENV === 'production'
 const db = process.env.DB
-
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
@@ -19,10 +18,11 @@ app.use(calcRouter)
 app.use(indexRouter)
 
 Loadable.preloadAll().then(() => {
-  mongoose.connect(db, err => console.log(err ? err : 'Success'))
+  // tslint:disable-next-line
+  mongoose.connect(db, err => !isProd && console.log(err ? err : 'Success'))
   const conn = mongoose.connection
   app.listen(port, () => {
     // tslint:disable-next-line
-    console.log(`App started at http://localhost:${port}`)
+    !isProd && console.log(`App started at http://localhost:${port}`)
   })
 })
