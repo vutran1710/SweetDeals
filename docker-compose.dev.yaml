@@ -1,15 +1,14 @@
-version: '3.1'
+version: '2'
 
 services:
-  mongo:
+  mongodb:
     container_name: mongo
-    image: mongo
-    restart: always
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: 1234
-      MONGO_INITDB_DATABASE: dev
-    volumes:
-      - ./.db:/data/db
+    image: 'bitnami/mongodb:latest'
     ports:
       - "27017:27017"
+    environment:
+      - MONGODB_USERNAME=root
+      - MONGODB_PASSWORD=1234
+      - MONGODB_DATABASE=dev
+    volumes:
+      - ./.db:/bitnami

@@ -4,7 +4,8 @@ import { BackendConfig, FrontendConfig } from './config'
 
 const envVars = {
   NODE_ENV: 'development',
-  PORT: 3000
+  PORT: 3000,
+  DB: 'mongodb://root:1234@localhost:27017/dev'
 }
 
 const backendServe = () => {
@@ -20,7 +21,7 @@ const backendServe = () => {
 const frontendServe = () => {
   const config = FrontendConfig(envVars.NODE_ENV === 'production')
   const fuse = FuseBox.init(config)
-  fuse.dev({ httpServer: false, hmr: true, port: 4445 })
+  fuse.dev({ httpServer: false, hmr: true, port: 4444 })
   fuse.bundle('client/bundle')
     .watch('client/**')
     .hmr()
