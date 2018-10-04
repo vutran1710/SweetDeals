@@ -16,6 +16,7 @@
     "@types/react-router-dom": "^4.3.1",
     "es6-template-strings": "^2.0.1",
     "express": "^4.16.3",
+    "mongoose": "^5.3.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-loadable": "^5.5.0",
