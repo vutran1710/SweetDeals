@@ -3,6 +3,7 @@
     "baseUrl": "../../",
     "paths": {
       "common/*": ["common/*"],
+      "@model": ["server/model/index"],
       "@base/*": ["client/component/base/*"],
       "@container/*": ["client/component/container/*"]
     },
