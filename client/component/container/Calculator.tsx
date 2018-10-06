@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { OPS, ERROR_MSG, DEFAULT_STATE } from 'common/constant'
+import { OPS, ERROR_MSG, DEFAULT_STATE } from '@constant'
 
 export class Calculator extends React.Component {
   state = DEFAULT_STATE

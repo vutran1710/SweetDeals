@@ -1,7 +1,7 @@
 import * as express from 'express'
 import { pick } from 'ramda'
-import { Calculation } from '../model'
-import { ERROR_MSG } from 'common/constant'
+import { Calculation } from '@model'
+import { ERROR_MSG } from '@constant'
 import { queryHandler } from './helper'
 
 const router = express.Router()
