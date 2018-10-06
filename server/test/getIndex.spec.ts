@@ -1,14 +1,17 @@
 import * as express from 'express'
 import * as request from 'supertest'
-import { indexRouter } from '../routes'
+import { expect } from 'chai'
 
-const app = express()
-app.use(indexRouter)
+import app from '../index'
 
-describe('## Get index', () => {
-  it('should return 200', done => {
+describe('## 1. Get index', () => {
+  it('should return 200 with a html', done => {
     request(app)
       .get('/')
-      .expect(200, done)
+      .expect(200)
+      .end((err, res) => {
+        expect(res.text).to.be.a('string')
+        done()
+      })
   })
 })

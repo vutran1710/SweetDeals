@@ -1,17 +1,10 @@
 import * as express from 'express'
 import * as request from 'supertest'
 import * as sinon from 'sinon'
+import * as assert from 'assert'
 import { expect } from 'chai'
 import { Calculation } from '@model'
-import { calcRouter } from '../routes'
-
-const app = express()
-app.use(express.json())
-app.use(calcRouter)
-app.use((err, req, res, next) => res.status(err.status || 500).json({
-  message: err.message,
-  error: err
-}))
+import app from '../index'
 
 const mockResult = {
   _id: '123',
@@ -24,14 +17,34 @@ const mockResult = {
 
 const task = { a: 1, b: 2, operand: 'add' }
 
-describe('## Calculation API', () => {
+const sandbox = sinon.createSandbox()
 
-  it('1.1 Should return sum of 2 numbers', done => {
-    const findOne = sinon.stub(Calculation, 'findOne').yields(null, mockResult)
-    findOne.withArgs(task)
-    request(app).post('/calc').send(task).expect(200, () => {
-      findOne.restore()
-      done()
-    })
+describe('## 2. Calculation API', () => {
+  afterEach(() => {
+    sandbox.restore()
+  })
+
+  it('2.1 Should return result as new database entry', done => {
+    sandbox.stub(Calculation, 'findOne').returns({ exec: cb => cb(null, null) })
+    sandbox.stub(Calculation.prototype, 'save').resolves(mockResult)
+
+    request(app)
+      .post('/calc')
+      .send(task)
+      .expect(201)
+      .expect(({ body }) => expect(body).to.deep.equal(mockResult))
+      .end(done)
+  })
+
+  it('2.2 Should return a cache result', done => {
+    sandbox.stub(Calculation, 'findOne').returns({ exec: cb => cb(null, mockResult) })
+    const expectedResult = { a: 1, b: 2, result: 3, msg: 'cached' }
+
+    request(app)
+      .post('/calc')
+      .send(task)
+      .expect(200)
+      .expect(({ body }) => expect(body).to.deep.equal(expectedResult))
+      .end(done)
   })
 })

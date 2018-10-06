@@ -26,3 +26,5 @@ Loadable.preloadAll().then(() => {
     !isProd && console.log(`App started at http://localhost:${port}`)
   })
 })
+
+export default app
