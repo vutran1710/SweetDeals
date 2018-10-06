@@ -4,6 +4,7 @@
     "paths": {
       "common/*": ["common/*"],
       "@model": ["server/model/index"],
+      "@constant": ["common/constant"],
       "@base/*": ["client/component/base/*"],
       "@container/*": ["client/component/container/*"]
     },

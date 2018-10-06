@@ -35,11 +35,16 @@ const validOperandHandler = (body, res) => Calculation.findOne(body)
     }
   }))
 
-router.post('/calc', (req, res) => {
-  if (req.body.operand in calcMatcher) {
-    return validOperandHandler(req.body, res)
-  }
-  return res.status(400).send({ error: ERROR_MSG[0] })
+router.post('/calc', ({ body }, res) => {
+  const badRequestHandler = (bad, error) => bad && res.status(400).send({ error })
+
+  const requiredParams = ['a', 'b', 'operand']
+  requiredParams.forEach(p => badRequestHandler(!(p in body), ERROR_MSG[4]))
+
+  const divideByZero = body.b === 0 && body.operand === 'divide'
+  badRequestHandler(divideByZero, ERROR_MSG[2])
+
+  return validOperandHandler(body, res)
 })
 
 export const calcRouter = router

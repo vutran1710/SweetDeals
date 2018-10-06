@@ -9,7 +9,8 @@ export const ERROR_MSG = [
   'Unsupported request',
   'Server Error',
   'Invalid Calculation',
-  'Cannot connect to database'
+  'Cannot connect to database',
+  'Missing Params'
 ]
 
 export const DEFAULT_STATE = {
