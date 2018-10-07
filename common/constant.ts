@@ -16,7 +16,6 @@ export const ERROR_MSG = [
 export const DEFAULT_STATE = {
   a: '0',
   b: '0',
-
   activeValue: 'a',
   display: '0',
   operand: null

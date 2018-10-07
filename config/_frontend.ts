@@ -43,9 +43,7 @@ export function FrontendConfig(isProduction = false) {
       '@container': '~/client/component/container',
       '@be-service': '~/client/service/backend',
       '@fe-service': '~/client/service/frontend',
-      '@style': '~/client/style',
-      '@constant': '~/common/constant',
-      '@fp': '~/common/fp'
+      '@style': '~/client/style'
     }
   }
 }

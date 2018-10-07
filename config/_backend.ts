@@ -22,10 +22,8 @@ export function BackendConfig(envVars) {
       '@container': '~/client/component/container',
       '@be-service': '~/client/service/backend',
       '@fe-service': '~/client/service/frontend',
-      '@model': '~/server/model/index.ts',
-      '@style': '~/client/style',
-      '@constant': '~/common/constant.ts',
-      '@fp': '~/common/fp'
+      '@model': '~/server/model/index',
+      '@style': '~/client/style'
     }
   }
 }
