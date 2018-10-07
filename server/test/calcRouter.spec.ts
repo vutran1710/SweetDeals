@@ -74,4 +74,15 @@ describe('## 2. Calculation API', () => {
       .expect(res => expect(res.body.error).to.equal(ERROR_MSG[4]))
       .end(done)
   })
+
+  it('2.5 Unsupported operand', done => {
+    const payload = { a: 1, b: 2, operand: 'percent' }
+
+    request(app)
+      .post('/calc')
+      .send(payload)
+      .expect(400)
+      .expect(res => expect(res.body.error).to.equal(ERROR_MSG[0]))
+      .end(done)
+  })
 })

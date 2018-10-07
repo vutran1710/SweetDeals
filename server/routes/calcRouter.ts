@@ -44,6 +44,9 @@ router.post('/calc', ({ body }, res) => {
   const divideByZero = body.b === 0 && body.operand === 'divide'
   badRequestHandler(divideByZero, ERROR_MSG[2])
 
+  const unsupportedOperand = !(body.operand in calcMatcher)
+  badRequestHandler(unsupportedOperand, ERROR_MSG[0])
+
   return validOperandHandler(body, res)
 })
 
