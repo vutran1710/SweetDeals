@@ -1,4 +1,6 @@
 .tern-port
+.nyc_output
+coverage
 node_modules
 .db
 .fusebox

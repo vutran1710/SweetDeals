@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node -r ts-node/register --inspect fuse.ts",
     "lint": "tslint -c tslint.json '{client,server}/**/*.{ts,tsx}'",
-    "test": "ts-mocha --project server/test/test-tsconfig.json -r tsconfig-paths/register 'server/test/*.spec.ts'",
+    "test": "TS_NODE_PROJECT=server/test/tsConfig.json mocha --opts server/test/mocha.opts",
+    "cover": "TS_NODE_PROJECT=server/test/tsConfig.json nyc mocha --opts server/test/mocha.opts",
     "verify": "run-s lint test"
   },
   "dependencies": {
@@ -35,9 +36,10 @@
     "mocha": "^5.2.0",
     "node-sass": "^4.9.3",
     "npm-run-all": "^4.1.3",
+    "nyc": "^13.0.1",
     "sinon": "^6.3.5",
+    "source-map-support": "^0.5.9",
     "supertest": "^3.3.0",
-    "ts-mocha": "^2.0.0",
     "ts-node": "^7.0.1",
     "tsconfig-paths": "^3.6.0",
     "tslint": "^5.11.0",
@@ -45,5 +47,29 @@
     "typescript": "^3.1.1",
     "uglify-es": "^3.3.9",
     "uglify-js": "^3.4.9"
+  },
+  "nyc": {
+    "include": [
+      "server/**/*.ts",
+      "server/**/*.tsx"
+    ],
+    "exclude": [
+      "server/test/**/*.ts",
+      "server/test/*.ts"
+    ],
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "require": [
+      "ts-node/register",
+      "tsconfig-paths/register"
+    ],
+    "reporter": [
+      "text-summary",
+      "html"
+    ],
+    "sourceMap": true,
+    "instrument": true
   }
 }
