@@ -5,7 +5,7 @@ import * as assert from 'assert'
 import { expect } from 'chai'
 import { Calculation } from '@model'
 import { ERROR_MSG } from '@constant'
-import app from '../index'
+import app from '../server/index'
 
 const mockResult = {
   _id: '123',

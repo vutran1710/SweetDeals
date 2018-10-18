@@ -2,7 +2,7 @@ import * as express from 'express'
 import * as request from 'supertest'
 import { expect } from 'chai'
 
-import app from '../index'
+import app from '../server/index'
 
 describe('## 1. Get index', () => {
   it('should return 200 with a html', done => {

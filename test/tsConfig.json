@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": "../../",
+    "baseUrl": "../",
     "paths": {
       "common/*": ["common/*"],
       "@model": ["server/model/index"],

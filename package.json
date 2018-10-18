@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node -r ts-node/register --inspect fuse.ts",
     "lint": "tslint -c tslint.json '{client,server}/**/*.{ts,tsx}'",
-    "test": "TS_NODE_PROJECT=server/test/tsConfig.json mocha --opts server/test/mocha.opts",
-    "cover": "TS_NODE_PROJECT=server/test/tsConfig.json nyc mocha --opts server/test/mocha.opts",
+    "test": "TS_NODE_PROJECT=test/tsConfig.json mocha --opts test/mocha.opts",
+    "cover": "TS_NODE_PROJECT=test/tsConfig.json nyc mocha --opts test/mocha.opts",
     "verify": "run-s lint test"
   },
   "dependencies": {
@@ -50,12 +50,12 @@
   },
   "nyc": {
     "include": [
-      "server/**/*.ts",
-      "server/**/*.tsx"
+      "server/**",
+      "server/**",
+      "client/**"
     ],
     "exclude": [
-      "server/test/**/*.ts",
-      "server/test/*.ts"
+      "test/**"
     ],
     "extension": [
       ".ts",
