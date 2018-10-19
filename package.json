@@ -51,9 +51,7 @@
   },
   "nyc": {
     "include": [
-      "server/**",
-      "server/**",
-      "client/**"
+      "server/**"
     ],
     "exclude": [
       "test/**"

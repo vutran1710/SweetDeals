@@ -85,4 +85,30 @@ describe('## 2. Calculation API', () => {
       .expect(res => expect(res.body.error).to.equal(ERROR_MSG.UNSUPORTED))
       .end(done)
   })
+
+  it('2.6 Database connection error', done => {
+    sandbox.stub(Calculation, 'findOne').returns({ exec: cb => cb(true, null) })
+
+    request(app)
+      .post('/calc')
+      .send(task)
+      .expect(500)
+      .expect(({ body }) => expect(body.error).to.equal(ERROR_MSG.DB_ERR))
+      .end(done)
+  })
+
+
+  it('2.7 Database record creation error', done => {
+    const saveError = { error: 'cannot save' }
+    sandbox.stub(Calculation, 'findOne').returns({ exec: cb => cb(null, null) })
+    sandbox.stub(Calculation.prototype, 'save').throws({ error: saveError })
+
+    request(app)
+      .post('/calc')
+      .send(task)
+      .expect(500)
+      .expect(({ body }) => expect(body.error).to.deep.equal(saveError))
+      .end(done)
+  })
+
 })

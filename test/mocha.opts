@@ -2,7 +2,7 @@
 -r ts-node/register
 -r tsconfig-paths/register
 --require source-map-support/register
---reporter nyan
+# --reporter nyan
 --full-trace
 --bail
 --exit

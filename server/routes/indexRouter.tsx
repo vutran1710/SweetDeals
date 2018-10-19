@@ -22,7 +22,7 @@ router.get('/*', (req, res) => {
   const context = {}
   const renderApp = ReactDOMServer.renderToString(jsx(context, req))
   const responseRender = data => res.send(template(data, { renderApp }))
-  const errorReadfile = e => res.status(400).send(e)
+  const errorReadfile = e => res.status(500).send(e)
   return readFile(htmlPath, 'utf-8').then(responseRender).catch(errorReadfile)
 })
 

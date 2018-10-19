@@ -38,8 +38,6 @@ const validOperandHandler = (body, res) => Calculation.findOne(body)
 
 router.post('/calc', ({ body }, res) => {
   const requiredParams = ['a', 'b', 'operand']
-
-  // ERRORS
   const missingParam = !requiredParams.every(p => p in body) && ERROR_MSG.MISSING_PARAM
   const divideByZero = body.b === 0 && body.operand === 'divide' && ERROR_MSG.INVALID_CALC
   const invalidOperand = !calculator[body.operand] && ERROR_MSG.UNSUPORTED
