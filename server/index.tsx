@@ -19,8 +19,7 @@ app.use(indexRouter)
 
 Loadable.preloadAll().then(() => {
   // tslint:disable-next-line
-  mongoose.connect(db, err => !isProd && console.log(err ? err : 'Success'))
-  const conn = mongoose.connection
+  mongoose.connect(db, { useNewUrlParser: true }).catch(console.info)
   app.listen(port, () => {
     // tslint:disable-next-line
     !isProd && console.log(`App started at http://localhost:${port}`)

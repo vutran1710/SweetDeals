@@ -4,8 +4,8 @@ import {
   UglifyJSPlugin
 } from 'fuse-box'
 
-export function BackendConfig(envVars) {
-  const isProduction = envVars.NODE_ENV === 'production'
+export function BackendConfig() {
+  const isProduction = process.env.NODE_ENV === 'production'
   return {
     homeDir: '.',
     output: 'build/$name.js',
@@ -14,7 +14,6 @@ export function BackendConfig(envVars) {
     hash: isProduction,
     plugins: [
       JSONPlugin(),
-      EnvPlugin(envVars),
       isProduction && UglifyJSPlugin()
     ]
   }

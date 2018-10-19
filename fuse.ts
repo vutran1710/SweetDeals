@@ -2,12 +2,6 @@ import { FuseBox } from 'fuse-box'
 import { src, task } from 'fuse-box/sparky'
 import { BackendConfig, FrontendConfig } from './config'
 
-const envVars = {
-  NODE_ENV: 'development',
-  PORT: 3000,
-  DB: 'mongodb://root:1234@localhost:27017/dev'
-}
-
 const alias = {
   '@base': '~/client/component/base',
   '@constant': '~/common/constant',
@@ -20,7 +14,7 @@ const alias = {
 }
 
 const backendServe = () => {
-  const config = BackendConfig(envVars)
+  const config = BackendConfig()
   const fuse = FuseBox.init({ ...config, alias })
   fuse.bundle('server/bundle')
     .watch('server/**/*.(ts|tsx)')
@@ -30,7 +24,7 @@ const backendServe = () => {
 }
 
 const frontendServe = () => {
-  const config = FrontendConfig(envVars.NODE_ENV === 'production')
+  const config = FrontendConfig(process.env.NODE_ENV === 'production')
   const fuse = FuseBox.init({ ...config, alias })
   fuse.dev({ httpServer: false, hmr: true, port: 4444 })
   fuse.bundle('client/bundle')
