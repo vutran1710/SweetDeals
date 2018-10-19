@@ -40,17 +40,17 @@ router.post('/calc', ({ body }, res) => {
   const requiredParams = ['a', 'b', 'operand']
 
   // ERRORS
-  const missingParam = !requiredParams.every(p => p in body) && 'MISSING_PARAM'
-  const divideByZero = body.b === 0 && body.operand === 'divide' && 'INVALID_CALC'
-  const invalidOperand = !calculator[body.operand] && 'UNSUPORTED'
-  const err = missingParam || divideByZero || invalidOperand
+  const missingParam = !requiredParams.every(p => p in body) && ERROR_MSG.MISSING_PARAM
+  const divideByZero = body.b === 0 && body.operand === 'divide' && ERROR_MSG.INVALID_CALC
+  const invalidOperand = !calculator[body.operand] && ERROR_MSG.UNSUPORTED
+  const error = missingParam || divideByZero || invalidOperand
 
   const handler = _.matcher({
-    true: () => res.status(400).send({ error: ERROR_MSG[err] }),
+    true: () => res.status(400).send({ error }),
     _: () => validOperandHandler(body, res)
   })
 
-  return handler(!!err)
+  return handler(!!error)
 })
 
 export const calcRouter = router
