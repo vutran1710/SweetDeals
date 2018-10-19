@@ -1,4 +1,4 @@
-import { ERROR_MSG } from 'common/constant'
+import { ERROR_MSG } from '@constant'
 
 const error = ERROR_MSG[3]
 

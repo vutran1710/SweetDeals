@@ -4,10 +4,10 @@
   "description": "wt",
   "main": "index.js",
   "scripts": {
-    "start": "node -r ts-node/register --inspect fuse.ts",
+    "start": "node -r dotenv/config -r ts-node/register --inspect fuse.ts",
     "lint": "tslint -c tslint.json '{client,server}/**/*.{ts,tsx}'",
-    "test": "TS_NODE_PROJECT=test/tsConfig.json mocha --opts test/mocha.opts",
-    "cover": "TS_NODE_PROJECT=test/tsConfig.json nyc mocha --opts test/mocha.opts",
+    "test": "mocha --opts test/mocha.opts",
+    "cover": "nyc mocha --opts test/mocha.opts",
     "verify": "run-s lint test"
   },
   "dependencies": {
@@ -17,6 +17,7 @@
     "@types/react-dom": "^16.0.8",
     "@types/react-loadable": "^5.4.1",
     "@types/react-router-dom": "^4.3.1",
+    "dotenv": "^6.1.0",
     "es6-template-strings": "^2.0.1",
     "express": "^4.16.3",
     "mongoose": "^5.3.1",

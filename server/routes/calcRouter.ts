@@ -1,8 +1,9 @@
 import * as express from 'express'
 import { pick } from 'ramda'
 import { Calculation } from '@model'
-import { ERROR_MSG } from 'common/constant'
+import { ERROR_MSG } from '@constant'
 import { queryHandler } from './helper'
+import * as _ from 'common/fp'
 
 const router = express.Router()
 
@@ -29,25 +30,28 @@ const validOperandHandler = (body, res) => Calculation.findOne(body)
 
     try {
       const newItem = await item.save()
-      res.status(201).send(newItem)
+      return res.status(201).send(newItem)
     } catch (err) {
-      res.status(500).send(err)
+      return res.status(500).send(err)
     }
   }))
 
 router.post('/calc', ({ body }, res) => {
-  const badRequestHandler = (bad, error) => bad && res.status(400).send({ error })
-
   const requiredParams = ['a', 'b', 'operand']
-  requiredParams.forEach(p => badRequestHandler(!(p in body), ERROR_MSG[4]))
+  const missingParamErr = !requiredParams.every(p => p in body)
+  const divideByZeroErr = body.b === 0 && body.operand === 'divide'
+  const unsupportedOperandErr = !calcMatcher[body.operand]
 
-  const divideByZero = body.b === 0 && body.operand === 'divide'
-  badRequestHandler(divideByZero, ERROR_MSG[2])
+  const error = missingParamErr && ERROR_MSG[4]
+    || divideByZeroErr && ERROR_MSG[2]
+    || unsupportedOperandErr && ERROR_MSG[0]
 
-  const unsupportedOperand = !(body.operand in calcMatcher)
-  badRequestHandler(unsupportedOperand, ERROR_MSG[0])
+  const patternMatch = _.matcher({
+    hasError: () => res.status(400).send({ error }),
+    _: () => validOperandHandler(body, res)
+  })
 
-  return validOperandHandler(body, res)
+  return patternMatch(error && 'hasError')()
 })
 
 export const calcRouter = router
