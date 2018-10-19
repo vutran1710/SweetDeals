@@ -38,14 +38,13 @@ const validOperandHandler = (body, res) => Calculation.findOne(body)
 
 router.post('/calc', ({ body }, res) => {
   const requiredParams = ['a', 'b', 'operand']
+  const missingParamErr = !requiredParams.every(p => p in body)
+  const divideByZeroErr = body.b === 0 && body.operand === 'divide'
+  const unsupportedOperandErr = !calcMatcher[body.operand]
 
-  const missingParam = !requiredParams.every(p => p in body)
-  const divideByZero = body.b === 0 && body.operand === 'divide'
-  const unsupportedOperand = !calcMatcher[body.operand]
-
-  const error = missingParam && ERROR_MSG[4]
-    || divideByZero && ERROR_MSG[2]
-    || unsupportedOperand && ERROR_MSG[0]
+  const error = missingParamErr && ERROR_MSG[4]
+    || divideByZeroErr && ERROR_MSG[2]
+    || unsupportedOperandErr && ERROR_MSG[0]
 
   const patternMatch = _.matcher({
     hasError: () => res.status(400).send({ error }),
