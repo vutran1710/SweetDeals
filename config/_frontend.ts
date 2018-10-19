@@ -38,12 +38,6 @@ export function FrontendConfig(isProduction = false) {
       })
     ],
     sourceMaps: !isProduction,
-    alias: {
-      '@base': '~/client/component/base',
-      '@container': '~/client/component/container',
-      '@be-service': '~/client/service/backend',
-      '@fe-service': '~/client/service/frontend',
-      '@style': '~/client/style'
-    }
+    automaticAlias: undefined
   }
 }

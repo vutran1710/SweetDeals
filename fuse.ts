@@ -8,9 +8,22 @@ const envVars = {
   DB: 'mongodb://root:1234@localhost:27017/dev'
 }
 
+const alias = {
+  '@base/*': 'client/component/base/*',
+  '@base': 'client/component/base/index',
+  '@constant': 'common/constant',
+  '@container/*': 'client/component/container/*',
+  '@container': 'client/component/container/index',
+  '@be-service': '/client/service/backend/index',
+  '@fe-service': 'client/service/frontend/index',
+  '@model': 'server/model/index',
+  '@style/*': 'client/style/*',
+  'common/*': 'common/*'
+}
+
 const backendServe = () => {
   const config = BackendConfig(envVars)
-  const fuse = FuseBox.init(config)
+  const fuse = FuseBox.init({ ...config, alias })
   fuse.bundle('server/bundle')
     .watch('server/**/*.(ts|tsx)')
     .instructions('> [server/index.tsx]')
@@ -20,7 +33,7 @@ const backendServe = () => {
 
 const frontendServe = () => {
   const config = FrontendConfig(envVars.NODE_ENV === 'production')
-  const fuse = FuseBox.init(config)
+  const fuse = FuseBox.init({ ...config, alias })
   fuse.dev({ httpServer: false, hmr: true, port: 4444 })
   fuse.bundle('client/bundle')
     .watch('client/**/*.(ts|tsx)')

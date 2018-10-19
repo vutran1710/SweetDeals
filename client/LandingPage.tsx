@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as Loadable from 'react-loadable'
 import { Link, Switch, Route } from 'react-router-dom'
-import { Loading } from '@base/Loading'
+import { Loading } from '@base'
 
 const Index = () => (
   <div>
