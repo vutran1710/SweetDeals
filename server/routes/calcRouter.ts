@@ -7,7 +7,7 @@ import * as _ from 'common/fp'
 
 const router = express.Router()
 
-const calcMatcher = {
+const calculator = {
   add: (a, b) => a + b,
   multiply: (a, b) => a * b,
   subtract: (a, b) => a - b,
@@ -24,7 +24,7 @@ const validOperandHandler = (body, res) => Calculation.findOne(body)
     const { a, b, operand } = body
     const item = new Calculation({
       ...body,
-      result: calcMatcher[operand](a, b),
+      result: calculator[operand](a, b),
       regTime: Date.now()
     })
 
@@ -38,20 +38,19 @@ const validOperandHandler = (body, res) => Calculation.findOne(body)
 
 router.post('/calc', ({ body }, res) => {
   const requiredParams = ['a', 'b', 'operand']
-  const missingParamErr = !requiredParams.every(p => p in body)
-  const divideByZeroErr = body.b === 0 && body.operand === 'divide'
-  const unsupportedOperandErr = !calcMatcher[body.operand]
 
-  const error = missingParamErr && ERROR_MSG[4]
-    || divideByZeroErr && ERROR_MSG[2]
-    || unsupportedOperandErr && ERROR_MSG[0]
+  // ERRORS
+  const missingParam = !requiredParams.every(p => p in body) && 'MISSING_PARAM'
+  const divideByZero = body.b === 0 && body.operand === 'divide' && 'INVALID_CALC'
+  const invalidOperand = !calculator[body.operand] && 'UNSUPORTED'
+  const err = missingParam || divideByZero || invalidOperand
 
-  const patternMatch = _.matcher({
-    hasError: () => res.status(400).send({ error }),
+  const handler = _.matcher({
+    true: () => res.status(400).send({ error: ERROR_MSG[err] }),
     _: () => validOperandHandler(body, res)
   })
 
-  return patternMatch(error && 'hasError')()
+  return handler(!!err)
 })
 
 export const calcRouter = router

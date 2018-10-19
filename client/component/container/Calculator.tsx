@@ -12,7 +12,7 @@ export class Calculator extends React.Component {
 
   appendValue = btn => () => {
     const { activeValue, display } = this.state
-    const displayUgly = this.state[activeValue] === '0' || ERROR_MSG.includes(display)
+    const displayUgly = this.state[activeValue] === '0' || Object.values(ERROR_MSG).includes(display)
     const val = displayUgly ? btn : display + btn
     this.setState({ [activeValue]: val, display: val })
   }
@@ -35,7 +35,7 @@ export class Calculator extends React.Component {
         throw res.error
       }
       if (res.result === null) {
-        throw ERROR_MSG[2]
+        throw ERROR_MSG.SERVER_ERROR
       }
       const display = res.result.toFixed(4)
       this.setState({ ...DEFAULT_STATE, display })
@@ -43,7 +43,7 @@ export class Calculator extends React.Component {
 
     const errorHandler = display => this.setState({
       ...DEFAULT_STATE,
-      display: typeof display === 'string' ? display : ERROR_MSG[1]
+      display: typeof display === 'string' ? display : ERROR_MSG.SERVER_ERROR
     })
 
     const requestOptions = {

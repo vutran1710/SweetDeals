@@ -60,7 +60,7 @@ describe('## 2. Calculation API', () => {
       .post('/calc')
       .send(payload)
       .expect(400)
-      .expect(res => expect(res.body.error).to.equal(ERROR_MSG[2]))
+      .expect(res => expect(res.body.error).to.equal(ERROR_MSG.INVALID_CALC))
       .end(done)
   })
 
@@ -71,7 +71,7 @@ describe('## 2. Calculation API', () => {
       .post('/calc')
       .send(payload)
       .expect(400)
-      .expect(res => expect(res.body.error).to.equal(ERROR_MSG[4]))
+      .expect(res => expect(res.body.error).to.equal(ERROR_MSG.MISSING_PARAM))
       .end(done)
   })
 
@@ -82,7 +82,7 @@ describe('## 2. Calculation API', () => {
       .post('/calc')
       .send(payload)
       .expect(400)
-      .expect(res => expect(res.body.error).to.equal(ERROR_MSG[0]))
+      .expect(res => expect(res.body.error).to.equal(ERROR_MSG.UNSUPORTED))
       .end(done)
   })
 })

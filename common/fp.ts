@@ -39,4 +39,6 @@ export const when = arg1 => arg2 => arg1 ? arg2 : null
 
 export const assign = (src, dest) => Object.assign(src, dest)
 
-export const matcher = pattern => arg => arg in pattern ? (pattern['true'] || pattern[arg]) : (pattern['_'] || undefined)
+export const matcher = pattern => (arg, returnedValue = undefined) => arg in pattern
+  ? pattern['true'](returnedValue) || pattern[arg](returnedValue)
+  : pattern['_'](returnedValue) || returnedValue

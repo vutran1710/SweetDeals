@@ -5,13 +5,13 @@ export const OPS = {
   subtract: '-'
 }
 
-export const ERROR_MSG = [
-  'Unsupported request',
-  'Server Error',
-  'Invalid Calculation',
-  'Cannot connect to database',
-  'Missing Params'
-]
+export const ERROR_MSG = {
+  INVALID_CALC: 'Invalid Calculation',
+  MISSING_PARAM: 'Missing Params',
+  UNSUPORTED: 'Unsupported request',
+  SERVER_ERROR: 'Server Error',
+  DB_ERR: 'Cannot connect to database'
+}
 
 export const DEFAULT_STATE = {
   a: '0',
