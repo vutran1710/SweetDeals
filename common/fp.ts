@@ -38,3 +38,5 @@ export const flush = options => obj => {
 export const when = arg1 => arg2 => arg1 ? arg2 : null
 
 export const assign = (src, dest) => Object.assign(src, dest)
+
+export const matcher = pattern => arg => arg in pattern ? (pattern['true'] || pattern[arg]) : (pattern['_'] || undefined)
