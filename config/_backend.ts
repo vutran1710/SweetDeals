@@ -16,7 +16,6 @@ export function BackendConfig(envVars) {
       JSONPlugin(),
       EnvPlugin(envVars),
       isProduction && UglifyJSPlugin()
-    ],
-    automaticAlias: undefined
+    ]
   }
 }

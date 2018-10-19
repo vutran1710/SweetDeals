@@ -9,16 +9,14 @@ const envVars = {
 }
 
 const alias = {
-  '@base/*': 'client/component/base/*',
-  '@base': 'client/component/base/index',
-  '@constant': 'common/constant',
-  '@container/*': 'client/component/container/*',
-  '@container': 'client/component/container/index',
-  '@be-service': '/client/service/backend/index',
-  '@fe-service': 'client/service/frontend/index',
-  '@model': 'server/model/index',
-  '@style/*': 'client/style/*',
-  'common/*': 'common/*'
+  '@base': '~/client/component/base',
+  '@constant': '~/common/constant',
+  '@container': '~/client/component/container',
+  '@be-service': '~/client/service/backend',
+  '@fe-service': '~/client/service/frontend',
+  '@model': '~/server/model',
+  '@style': '~/client/style',
+  'common': '~/common'
 }
 
 const backendServe = () => {

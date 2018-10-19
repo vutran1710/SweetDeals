@@ -37,7 +37,6 @@ export function FrontendConfig(isProduction = false) {
         uglify: true
       })
     ],
-    sourceMaps: !isProduction,
-    automaticAlias: undefined
+    sourceMaps: !isProduction
   }
 }
