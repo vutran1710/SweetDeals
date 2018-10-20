@@ -44,11 +44,11 @@ router.post('/calc', ({ body }, res) => {
   const error = missingParam || divideByZero || invalidOperand
 
   const handler = _.matcher({
-    true: () => res.status(400).send({ error }),
-    _: () => validOperandHandler(body, res)
+    hasError: () => res.status(400).send({ error }),
+    noError: () => validOperandHandler(body, res)
   })
 
-  return handler(!!error)
+  return handler(!!error && 'hasError', { default: 'noError' })
 })
 
 export const calcRouter = router

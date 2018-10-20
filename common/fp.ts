@@ -39,6 +39,11 @@ export const when = arg1 => arg2 => arg1 ? arg2 : null
 
 export const assign = (src, dest) => Object.assign(src, dest)
 
-export const matcher = pattern => (arg, returnedValue = undefined) => arg in pattern
-  ? pattern['true'](returnedValue) || pattern[arg](returnedValue)
-  : pattern['_'](returnedValue) || returnedValue
+interface IMatcherConfig {
+  returnedValue?: any
+  default?: string
+}
+
+export const matcher = pattern => (arg, config: IMatcherConfig) => arg in pattern
+  ? pattern[arg](config.returnedValue)
+  : pattern[config.default || 'default'](config.returnedValue)
