@@ -30,7 +30,18 @@ const sandbox = sinon.createSandbox()
 describe('## 2. Calculation API', () => {
   afterEach(() => sandbox.restore())
 
-  it('2.1 Should return result as new database entry', done => {
+  it('2.1 Test calculator\'s functions', () => {
+    const { calculator } = require('../server/routes/calcRouter')
+    const expectation = [
+      { k: 'subtract', v: -1 },
+      { k: 'add', v: 3 },
+      { k: 'multiply', v: 2 },
+      { k: 'divide', v: 0.5 },
+    ]
+    return expectation.forEach(item => expect(calculator[item.k](1, 2)).to.equal(item.v))
+  })
+
+  it('2.2 Should return result as new database entry', done => {
     sandbox.stub(Calculation, 'findOne').returns({ exec: cb => cb(null, null) })
     sandbox.stub(Calculation.prototype, 'save').resolves(mockResult)
 
@@ -42,7 +53,7 @@ describe('## 2. Calculation API', () => {
       .end(done)
   })
 
-  it('2.2 Should return a cache result', done => {
+  it('2.3 Should return a cache result', done => {
     sandbox.stub(Calculation, 'findOne').returns({ exec: cb => cb(null, mockResult) })
 
     request(app)
@@ -53,7 +64,7 @@ describe('## 2. Calculation API', () => {
       .end(done)
   })
 
-  it('2.3 Test divide by Zero', done => {
+  it('2.4 Test divide by Zero', done => {
     const payload = { a: 1, b: 0, operand: 'divide' }
 
     request(app)
@@ -64,7 +75,7 @@ describe('## 2. Calculation API', () => {
       .end(done)
   })
 
-  it('2.4 Missing params', done => {
+  it('2.5 Missing params', done => {
     const payload = { a: 1, operand: 'divide' }
 
     request(app)
@@ -75,7 +86,7 @@ describe('## 2. Calculation API', () => {
       .end(done)
   })
 
-  it('2.5 Unsupported operand', done => {
+  it('2.6 Unsupported operand', done => {
     const payload = { a: 1, b: 2, operand: 'percent' }
 
     request(app)
@@ -86,7 +97,7 @@ describe('## 2. Calculation API', () => {
       .end(done)
   })
 
-  it('2.6 Database connection error', done => {
+  it('2.7 Database connection error', done => {
     sandbox.stub(Calculation, 'findOne').returns({ exec: cb => cb(true, null) })
 
     request(app)
@@ -98,7 +109,7 @@ describe('## 2. Calculation API', () => {
   })
 
 
-  it('2.7 Database record creation error', done => {
+  it('2.8 Database record creation error', done => {
     const saveError = { error: 'cannot save' }
     sandbox.stub(Calculation, 'findOne').returns({ exec: cb => cb(null, null) })
     sandbox.stub(Calculation.prototype, 'save').throws({ error: saveError })

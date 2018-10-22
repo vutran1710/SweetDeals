@@ -7,7 +7,7 @@ import * as _ from 'common/fp'
 
 const router = express.Router()
 
-const calculator = {
+export const calculator = {
   add: (a, b) => a + b,
   multiply: (a, b) => a * b,
   subtract: (a, b) => a - b,
