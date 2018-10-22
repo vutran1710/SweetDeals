@@ -110,15 +110,14 @@ describe('## 2. Calculation API', () => {
 
 
   it('2.8 Database record creation error', done => {
-    const saveError = { error: 'cannot save' }
     sandbox.stub(Calculation, 'findOne').returns({ exec: cb => cb(null, null) })
-    sandbox.stub(Calculation.prototype, 'save').throws({ error: saveError })
+    sandbox.stub(Calculation.prototype, 'save').rejects()
 
     request(app)
       .post('/calc')
       .send(task)
       .expect(500)
-      .expect(({ body }) => expect(body.error).to.deep.equal(saveError))
+      .expect(({ body }) => expect(body.error).to.equal(ERROR_MSG.DB_SAVE_ERR))
       .end(done)
   })
 

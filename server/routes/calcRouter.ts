@@ -31,8 +31,8 @@ const validOperandHandler = (body, res) => Calculation.findOne(body)
     try {
       const newItem = await item.save()
       return res.status(201).send(newItem)
-    } catch (err) {
-      return res.status(500).send(err)
+    } catch (error) {
+      return res.status(500).send({ error: ERROR_MSG.DB_SAVE_ERR })
     }
   }))
 
