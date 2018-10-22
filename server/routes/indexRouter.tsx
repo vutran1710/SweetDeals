@@ -5,7 +5,6 @@ import * as ReactDOMServer from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
 import { readFile as fsReadFile } from 'fs'
 import { promisify } from 'util'
-
 import { LandingPage } from 'client/LandingPage'
 
 const router = express.Router()
@@ -22,7 +21,7 @@ router.get('/*', (req, res) => {
   const context = {}
   const renderApp = ReactDOMServer.renderToString(jsx(context, req))
   const responseRender = data => res.send(template(data, { renderApp }))
-  const errorReadfile = e => res.status(500).send(e)
+  const errorReadfile = error => res.status(500).send({ error })
   return readFile(htmlPath, 'utf-8').then(responseRender).catch(errorReadfile)
 })
 
