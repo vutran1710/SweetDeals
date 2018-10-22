@@ -48,7 +48,7 @@ router.post('/calc', ({ body }, res) => {
     noError: () => validOperandHandler(body, res)
   })
 
-  return handler(!!error && 'hasError', { default: 'noError' })
+  return handler(error ? 'hasError' : 'noError')
 })
 
 export const calcRouter = router

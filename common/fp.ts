@@ -44,6 +44,6 @@ interface IMatcherConfig {
   default?: string
 }
 
-export const matcher = pattern => (arg, config: IMatcherConfig) => arg in pattern
+export const matcher = pattern => (arg, config: IMatcherConfig = {}) => arg in pattern
   ? pattern[arg](config.returnedValue)
   : pattern[config.default || 'default'](config.returnedValue)
