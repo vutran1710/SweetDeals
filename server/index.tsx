@@ -22,7 +22,7 @@ Loadable.preloadAll().then(() => {
   mongoose.connect(db, { useNewUrlParser: true }).catch(console.info)
   app.listen(port, () => {
     // tslint:disable-next-line
-    !isProd && console.log(`App started at http://localhost:${port}`)
+    console.log(`|> App started at http://localhost:${port}\n|> DB: ${db}`)
   })
 })
 
