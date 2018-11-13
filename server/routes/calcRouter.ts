@@ -2,7 +2,7 @@ import * as express from 'express'
 import { pick } from 'ramda'
 import { Calculation } from '@model'
 import { ERROR_MSG } from '@constant'
-import { queryHandler } from './helper'
+import { queryHandler, catcher } from './helper'
 import * as _ from 'common/fp'
 
 const router = express.Router()
@@ -28,12 +28,9 @@ const validOperandHandler = (body, res) => Calculation.findOne(body)
       regTime: Date.now()
     })
 
-    try {
-      const newItem = await item.save()
-      return res.status(201).send(newItem)
-    } catch (error) {
-      return res.status(500).send({ error: ERROR_MSG.DB_SAVE_ERR })
-    }
+    const [err, newItem] = await catcher(item.save())
+    if (err) return res.status(500).send({ error: ERROR_MSG.DB_SAVE_ERR })
+    return res.status(201).send(newItem)
   }))
 
 router.post('/calc', ({ body }, res) => {

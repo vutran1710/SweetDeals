@@ -8,3 +8,5 @@ export const queryHandler = (res, entityHandler) => (err, entity) => {
   }
   return entityHandler(entity)
 }
+
+export const catcher = promise => promise.then(data => [null, data]).catch(err => [err])
