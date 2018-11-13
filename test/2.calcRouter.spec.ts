@@ -40,7 +40,7 @@ describe('## 2. Calculation API', () => {
   })
 
   it('2.2 Should return result as new database entry', done => {
-    sandbox.stub(Calculation, 'findOne').returns({ exec: cb => cb(null, null) })
+    sandbox.stub(Calculation, 'findOne').resolves(undefined)
     sandbox.stub(Calculation.prototype, 'save').resolves(mockResult)
 
     request(app)
@@ -52,7 +52,7 @@ describe('## 2. Calculation API', () => {
   })
 
   it('2.3 Should return a cache result', done => {
-    sandbox.stub(Calculation, 'findOne').returns({ exec: cb => cb(null, mockResult) })
+    sandbox.stub(Calculation, 'findOne').resolves(mockResult)
 
     request(app)
       .post('/calc')
@@ -96,7 +96,7 @@ describe('## 2. Calculation API', () => {
   })
 
   it('2.7 Database connection error', done => {
-    sandbox.stub(Calculation, 'findOne').returns({ exec: cb => cb(true, null) })
+    sandbox.stub(Calculation, 'findOne').rejects('Shit happens')
 
     request(app)
       .post('/calc')
@@ -108,7 +108,7 @@ describe('## 2. Calculation API', () => {
 
 
   it('2.8 Database record creation error', done => {
-    sandbox.stub(Calculation, 'findOne').returns({ exec: cb => cb(null, null) })
+    sandbox.stub(Calculation, 'findOne').resolves(null)
     sandbox.stub(Calculation.prototype, 'save').rejects()
 
     request(app)

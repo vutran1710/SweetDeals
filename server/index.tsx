@@ -14,11 +14,14 @@ app.use('/asset', express.static(path.resolve('build/asset')))
 
 app.use(calcRouter)
 app.use(indexRouter)
+
+app.use((err, req, res, next) => res.status(err.code || 500).json({ error: err.error || err }))
+
 // tslint:disable-next-line
 mongoose.connect(db, { useNewUrlParser: true }).catch(console.info)
 app.listen(port, () => {
-  // tslint:disable-next-line
-  console.log(`|> App started at http://localhost:${port}\n|> DB: ${db}`)
+    // tslint:disable-next-line
+    console.log(`|> App started at http://localhost:${port}\n|> DB: ${db}`)
 })
 
 export default app

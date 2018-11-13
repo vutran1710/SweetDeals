@@ -2,7 +2,7 @@ import * as express from 'express'
 import { pick } from 'ramda'
 import { Calculation } from '@model'
 import { ERROR_MSG } from '@constant'
-import { queryHandler, catcher } from './helper'
+import { catcher, handleException } from './helper'
 import * as _ from 'common/fp'
 
 const router = express.Router()
@@ -14,38 +14,32 @@ export const calculator = {
   divide: (a, b) => a / b
 }
 
-const validOperandHandler = (body, res) => Calculation.findOne(body)
-  .exec(queryHandler(res, async entity => {
-    if (entity) {
-      const result = pick(['a', 'b', 'result'], entity)
-      return res.status(200).send({ ...result, msg: 'cached' })
-    }
-
-    const { a, b, operand } = body
-    const item = new Calculation({
-      ...body,
-      result: calculator[operand](a, b),
-      regTime: Date.now()
-    })
-
-    const [err, newItem] = await catcher(item.save())
-    if (err) return res.status(500).send({ error: ERROR_MSG.DB_SAVE_ERR })
-    return res.status(201).send(newItem)
-  }))
-
-router.post('/calc', ({ body }, res) => {
+const POST_CALCULATION = async ({ body }, res) => {
   const requiredParams = ['a', 'b', 'operand']
+
   const missingParam = !requiredParams.every(p => p in body) && ERROR_MSG.MISSING_PARAM
   const divideByZero = body.b === 0 && body.operand === 'divide' && ERROR_MSG.INVALID_CALC
   const invalidOperand = !calculator[body.operand] && ERROR_MSG.UNSUPORTED
   const error = missingParam || divideByZero || invalidOperand
+  if (error) throw { code: 400, error }
 
-  const handler = _.matcher({
-    hasError: () => res.status(400).send({ error }),
-    noError: () => validOperandHandler(body, res)
+  const [dbErr, memoized] = await catcher(Calculation.findOne(body))
+  if (dbErr) throw ERROR_MSG.DB_ERR
+  if (memoized) {
+    const result = pick(['a', 'b', 'result'], memoized)
+    return res.status(200).send({ ...result, msg: 'cached' })
+  }
+
+  const item = new Calculation({
+    ...body,
+    result: calculator[body.operand](body.a, body.b),
+    regTime: Date.now()
   })
 
-  return handler(error ? 'hasError' : 'noError')
-})
+  const [saveErr, newItem] = await catcher(item.save())
+  if (saveErr) throw ERROR_MSG.DB_SAVE_ERR
+  return res.status(201).send(newItem)
+}
 
+router.post('/calc', handleException(POST_CALCULATION))
 export const calcRouter = router
