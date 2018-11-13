@@ -1,6 +1,7 @@
 import * as mongoose from 'mongoose'
+const { Schema } = mongoose
 
-const CalculationSchema = mongoose.Schema({
+const CalculationSchema = new Schema({
   operand: {
     type: 'String',
     required: true
