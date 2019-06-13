@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install
+RUN npm install --only=prod
 
 RUN mv prod.env .env
 
