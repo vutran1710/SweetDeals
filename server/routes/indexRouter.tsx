@@ -1,11 +1,11 @@
+import { LandingPage } from 'client/LandingPage'
 import * as template from 'es6-template-strings'
 import * as express from 'express'
+import { readFile as fsReadFile } from 'fs'
 import * as React from 'react'
 import * as ReactDOMServer from 'react-dom/server'
 import { StaticRouter } from 'react-router-dom'
-import { readFile as fsReadFile } from 'fs'
 import { promisify } from 'util'
-import { LandingPage } from 'client/LandingPage'
 
 const router = express.Router()
 const htmlPath = 'build/index.html'

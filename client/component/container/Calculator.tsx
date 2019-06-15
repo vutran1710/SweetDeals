@@ -1,5 +1,9 @@
+import {
+  DEFAULT_STATE,
+  ERROR_MSG,
+  OPS,
+} from '@constant'
 import * as React from 'react'
-import { OPS, ERROR_MSG, DEFAULT_STATE } from '@constant'
 
 export class Calculator extends React.Component {
   state = DEFAULT_STATE
@@ -12,7 +16,10 @@ export class Calculator extends React.Component {
 
   appendValue = btn => () => {
     const { activeValue, display } = this.state
-    const displayUgly = this.state[activeValue] === '0' || Object.values(ERROR_MSG).includes(display)
+    const displayUgly = (
+      this.state[activeValue] === '0' ||
+      Object.values(ERROR_MSG).includes(display)
+    )
     const val = displayUgly ? btn : display + btn
     this.setState({ [activeValue]: val, display: val })
   }

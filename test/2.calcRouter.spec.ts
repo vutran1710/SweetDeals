@@ -4,32 +4,20 @@ import { expect } from 'chai'
 import { Calculation } from '@model'
 import { ERROR_MSG } from '@constant'
 import app from '../server/index'
+import { calculator } from '../server/routes/calcRouter'
 
-const mockResult = {
-  _id: '123',
-  a: 1,
-  b: 2,
-  operand: 'add',
-  result: 3,
-  regTime: Date.now()
-}
 
-const cachedResult = {
-  a: 1,
-  b: 2,
-  result: 3,
-  msg: 'cached'
-}
+describe('Creating documents', () => {
+  const task = { a: 1, b: 2, operand: 'add' }
+  const mock = { ...task, result: 3  }
 
-const task = { a: 1, b: 2, operand: 'add' }
-
-const sandbox = sinon.createSandbox()
-
-describe('## 2. Calculation API', () => {
-  afterEach(() => sandbox.restore())
+  before('Clear all the test document', async () => {
+    await Calculation.deleteMany({ result: 3 })
+    const count = await Calculation.countDocuments()
+    expect(count).to.equal(0)
+  })
 
   it('2.1 Test calculator\'s functions', () => {
-    const { calculator } = require('../server/routes/calcRouter')
     const expectation = [
       { k: 'subtract', v: -1 },
       { k: 'add', v: 3 },
@@ -40,83 +28,45 @@ describe('## 2. Calculation API', () => {
   })
 
   it('2.2 Should return result as new database entry', done => {
-    sandbox.stub(Calculation, 'findOne').resolves(undefined)
-    sandbox.stub(Calculation.prototype, 'save').resolves(mockResult)
-
-    request(app)
-      .post('/calc')
-      .send(task)
-      .expect(201)
-      .expect(({ body }) => expect(body).to.deep.equal(mockResult))
-      .end(done)
+    request(app).post('/calc').send(task)
+                .expect(201)
+                .expect(response => {
+                  expect(Boolean(response.body._id)).to.be.true
+                  expect(response.body.result).to.equal(mock.result)
+                }).end(done)
   })
 
-  it('2.3 Should return a cache result', done => {
-    sandbox.stub(Calculation, 'findOne').resolves(mockResult)
-
-    request(app)
-      .post('/calc')
-      .send(task)
-      .expect(200)
-      .expect(({ body }) => expect(body).to.deep.equal(cachedResult))
-      .end(done)
+  it('2.3 Should return memoized result', done => {
+    request(app).post('/calc').send(task)
+                .expect(200)
+                .expect(response => {
+                  expect(Boolean(response.body._id)).to.be.true
+                  expect(response.body.msg).to.equal('memoized')
+                }).end(done)
   })
 
-  it('2.4 Test divide by Zero', done => {
+  const evalError = error => resp => expect(resp.body.error).to.equal(error)
+
+  it('2.4 Test Errors: missing param', done => {
+    const payload = { a: 1 }
+    request(app).post('/calc').send(payload).expect(400)
+                .expect(evalError(ERROR_MSG.MISSING_PARAM))
+                .end(done)
+  })
+
+  it('2.5 Test Errors: divide by zero', done => {
     const payload = { a: 1, b: 0, operand: 'divide' }
-
-    request(app)
-      .post('/calc')
-      .send(payload)
-      .expect(400)
-      .expect(res => expect(res.body.error).to.equal(ERROR_MSG.INVALID_CALC))
-      .end(done)
+    request(app).post('/calc').send(payload).expect(400)
+                .expect(evalError(ERROR_MSG.INVALID_CALC))
+                .end(done)
   })
 
-  it('2.5 Missing params', done => {
-    const payload = { a: 1, operand: 'divide' }
-
-    request(app)
-      .post('/calc')
-      .send(payload)
-      .expect(400)
-      .expect(res => expect(res.body.error).to.equal(ERROR_MSG.MISSING_PARAM))
-      .end(done)
+  it('2.6 Test Errors: invalid operand', done => {
+    const payload = { a: 1 , b: 1, operand: 'not-supported' }
+    request(app).post('/calc').send(payload).expect(400)
+                .expect(evalError(ERROR_MSG.UNSUPORTED))
+                .end(done)
   })
 
-  it('2.6 Unsupported operand', done => {
-    const payload = { a: 1, b: 2, operand: 'percent' }
-
-    request(app)
-      .post('/calc')
-      .send(payload)
-      .expect(400)
-      .expect(res => expect(res.body.error).to.equal(ERROR_MSG.UNSUPORTED))
-      .end(done)
-  })
-
-  it('2.7 Database connection error', done => {
-    sandbox.stub(Calculation, 'findOne').rejects('Shit happens')
-
-    request(app)
-      .post('/calc')
-      .send(task)
-      .expect(500)
-      .expect(({ body }) => expect(body.error).to.equal(ERROR_MSG.DB_ERR))
-      .end(done)
-  })
-
-
-  it('2.8 Database record creation error', done => {
-    sandbox.stub(Calculation, 'findOne').resolves(null)
-    sandbox.stub(Calculation.prototype, 'save').rejects()
-
-    request(app)
-      .post('/calc')
-      .send(task)
-      .expect(500)
-      .expect(({ body }) => expect(body.error).to.equal(ERROR_MSG.DB_SAVE_ERR))
-      .end(done)
-  })
 
 })

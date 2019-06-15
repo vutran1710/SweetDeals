@@ -1,7 +1,10 @@
 import * as express from 'express'
-import * as path from 'path'
 import * as mongoose from 'mongoose'
-import { indexRouter, calcRouter } from './routes'
+import * as path from 'path'
+import {
+  calcRouter,
+  indexRouter,
+} from './routes'
 
 const app = express()
 const port = process.env.PORT
@@ -20,8 +23,8 @@ app.use((err, req, res, next) => res.status(err.code || 500).json({ error: err.e
 // tslint:disable-next-line
 mongoose.connect(db, { useNewUrlParser: true }).catch(console.info)
 app.listen(port, () => {
-    // tslint:disable-next-line
-    console.log(`|> App started at http://localhost:${port}\n|> DB: ${db}`)
+  // tslint:disable-next-line
+  console.log(`|> App started at http://localhost:${port}\n|> DB: ${db}`)
 })
 
 export default app

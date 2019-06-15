@@ -1,5 +1,4 @@
-import * as mongoose from 'mongoose'
-const { Schema } = mongoose
+import { model, Schema } from 'mongoose'
 
 const CalculationSchema = new Schema({
   operand: {
@@ -24,4 +23,4 @@ const CalculationSchema = new Schema({
   }
 })
 
-export const Calculation = mongoose.model('Calculation', CalculationSchema)
+export const Calculation = model('Calculation', CalculationSchema)
