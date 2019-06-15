@@ -3,3 +3,9 @@ export const catcher = promise => promise
   .catch(err => [err])
 
 export const handleException = fn => (req, res, next) => fn(req, res).catch(next)
+
+export const ThrowOn = (condition, msg) => {
+  if (!condition) {
+    throw new Error(msg)
+  }
+}
