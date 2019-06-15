@@ -1,8 +1,8 @@
 version: '2'
 
 services:
-  mongodb:
-    container_name: mongo_keothom
+  keothom_dev:
+    container_name: mongo_keothom_dev
     image: 'bitnami/mongodb:latest'
     ports:
       - "27017:27017"
@@ -12,3 +12,14 @@ services:
       - MONGODB_DATABASE=dev
     volumes:
       - ./.db:/bitnami
+  keothom_test:
+    container_name: mongo_keothom_test
+    image: 'bitnami/mongodb:latest'
+    ports:
+      - "27016:27017"
+    environment:
+      - MONGODB_USERNAME=root
+      - MONGODB_PASSWORD=1234
+      - MONGODB_DATABASE=test
+    volumes:
+      - ./.db_test:/bitnami
