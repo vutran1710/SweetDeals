@@ -6,6 +6,4 @@ COPY . .
 
 RUN npm install --only=prod
 
-RUN mv prod.env .env
-
-CMD [ "npm", "start" ]
+CMD [ "npm", "start:prod" ]
