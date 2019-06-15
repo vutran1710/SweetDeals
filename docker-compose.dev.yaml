@@ -1,8 +1,8 @@
 version: '2'
 
 services:
-  keothom_dev:
-    container_name: mongo_keothom_dev
+  sweetdeals_dev:
+    container_name: mongo_sweetdeals_dev
     image: 'bitnami/mongodb:latest'
     ports:
       - "27017:27017"
@@ -12,8 +12,8 @@ services:
       - MONGODB_DATABASE=dev
     volumes:
       - ./.db:/bitnami
-  keothom_test:
-    container_name: mongo_keothom_test
+  testdb:
+    container_name: mongo_sweetdeals_test
     image: 'bitnami/mongodb:latest'
     ports:
       - "27016:27017"

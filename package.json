@@ -9,7 +9,8 @@
     "lint": "tslint --fix -c tslint.json '{client,server}/**/*.{ts,tsx}'",
     "test": "DOTENV_CONFIG_PATH=.env.test mocha --opts test/mocha.opts",
     "cover": "DOTENV_CONFIG_PATH=.env.test nyc mocha --opts test/mocha.opts",
-    "verify": "run-s lint test",
+    "healthcheck": "DOTENV_CONFIG_PATH=.env.test node -r dotenv/config -r ts-node/register --inspect docs/healthcheck",
+    "verify": "run-s healthcheck lint test cover",
     "docker": "docker-compose -f docker-compose.dev.yaml up -d"
   },
   "dependencies": {
@@ -73,6 +74,17 @@
       "text-summary",
       "html"
     ],
+    "check-coverage": true,
+    "branches": 80,
+    "lines": 80,
+    "functions": 80,
+    "statements": 80,
+    "watermarks": {
+      "lines": [80, 95],
+      "functions": [80, 95],
+      "branches": [80, 95],
+      "statements": [80, 95]
+    },
     "sourceMap": true,
     "instrument": true
   }

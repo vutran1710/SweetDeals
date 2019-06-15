@@ -9,7 +9,6 @@
 .travis.yml
 .nyc_output
 docker-compose*
-test
 coverage
 node_modules
 build
