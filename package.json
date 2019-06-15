@@ -1,7 +1,7 @@
 {
-  "name": "keothom",
-  "version": "1.0.0",
-  "description": "wt",
+  "name": "SweetDeals",
+  "version": "0.1.0",
+  "description": "@vutr",
   "main": "index.js",
   "scripts": {
     "start": "node -r dotenv/config -r ts-node/register --inspect fuse.ts",
