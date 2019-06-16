@@ -1,2 +1,0 @@
-# SweetDeals Application
-...draft

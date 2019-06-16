@@ -1,0 +1,36 @@
+#+OPTIONS: ^:nil
+#+TITLE: SweetDeals
+#+DATE: <2018-07-31 Tue>
+#+AUTHOR: Vu Tran
+#+EMAIL: me@vutr.io`
+
+* Content                                                               :TOC:
+- [[#introduction][Introduction]]
+- [[#features][Features]]
+
+* Introduction
+SweetDeals is a complete heavy Javascript/Typescript-oriented application that aims towards easy sharing deals
+and payment-shares amongst group of friends or collegue. The inspiration came from how my friends in the office used to
+place bulk-order of fruit drinks after lunch then got troubled in calculating how much each person would pay
+afterwards.
+
+Some people forgot to pay for their own drinks.
+
+Then because of such, some others gotta pay more that they should have.
+
+It caused a lot of annoyance & discomforts.
+
+But after all, the application is mostly made for education & training purpose. There are a lot of gotchas & problems
+I had and tackled along the way and I hope someone can find some helpful tips & ideas when they dig through this
+repository.
+
+* Features
+The are plenty of keys to address about how the application has been built. Overall, it provides:
+- The full circle of software development
+- A complete, or *full-stack so to say,* javascript application
+  - TypeScript integration - the benefit & the tax
+  - How Fuse-Box can be a great alternative to *webpack*
+  - Mongodb, ExpressJS, React Server-side Rendering
+- Testing a *full-stack* javasript application
+- QA/QC, what to do from the point of the developers
+- DevOps workflow, including CICD and Deployment
