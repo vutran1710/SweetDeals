@@ -16,7 +16,8 @@ export function BackendConfig() {
       isProduction && QuantumPlugin({
         target: 'server',
         replaceProcessEnv: true,
-        bakeApiIntoBundle: 'server/bundle',
+        bakeApiIntoBundle: true,
+        extendServerImport: true,
       })
     ]
   }
