@@ -57,7 +57,9 @@
     "uglify-js": "^3.6.0"
   },
   "husky": {
-    "pre-commit": "npm run lint"
+    "hooks": {
+      "pre-commit": "npm run lint"
+    }
   },
   "nyc": {
     "include": [
