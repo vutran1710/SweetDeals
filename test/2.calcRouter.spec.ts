@@ -1,5 +1,4 @@
 import * as request from 'supertest'
-import * as sinon from 'sinon'
 import { expect } from 'chai'
 import { Calculation } from '@model'
 import { ERROR_MSG } from '@constant'
