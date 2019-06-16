@@ -1,0 +1,20 @@
+testdb:
+  image: 'bitnami/mongodb:latest'
+  expose:
+    - "27017"
+  environment:
+    MONGODB_USERNAME: root
+    MONGODB_PASSWORD: 1234
+    MONGODB_DATABASE: test
+  volumes:
+    - /db_test
+  cached: true
+sweetdealstest:
+  build:
+    image: sweetdeals
+    dockerfile: Dockerfile
+  depends_on:
+    - testdb
+  environment:
+    DB: mongodb://root:1234@testdb/test
+  cached: true

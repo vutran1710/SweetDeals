@@ -1,0 +1,3 @@
+- service: sweetdealstest
+  exclude: "master"
+  command: npm run verify

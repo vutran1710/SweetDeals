@@ -1,9 +1,9 @@
-FROM node:8-alpine
+FROM node:10-jessie
 
 WORKDIR /app
 
 COPY . .
 
-RUN npm install --only=prod
+RUN npm install
 
 CMD [ "npm", "start:prod" ]
