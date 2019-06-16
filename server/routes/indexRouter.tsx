@@ -20,7 +20,8 @@ const jsx = (context, req) => (
 router.get('/*', (req, res) => {
   const context = {}
   const renderApp = ReactDOMServer.renderToString(jsx(context, req))
-  const responseRender = data => res.send(template(data, { renderApp }))
+  const responseRender = templateString => res.send(template(templateString, { renderApp }))
+  // TODO: replace {error} with 500.html
   const errorReadfile = error => res.status(500).send({ error })
   return readFile(htmlPath, 'utf-8').then(responseRender).catch(errorReadfile)
 })
