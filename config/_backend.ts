@@ -1,7 +1,6 @@
 import {
   JSONPlugin,
-  EnvPlugin,
-  UglifyJSPlugin
+  QuantumPlugin,
 } from 'fuse-box'
 
 export function BackendConfig() {
@@ -14,7 +13,11 @@ export function BackendConfig() {
     hash: isProduction,
     plugins: [
       JSONPlugin(),
-      isProduction && UglifyJSPlugin()
+      isProduction && QuantumPlugin({
+        target: 'server',
+        replaceProcessEnv: true,
+        bakeApiIntoBundle: 'server/bundle',
+      })
     ]
   }
 }

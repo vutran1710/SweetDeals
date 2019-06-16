@@ -31,10 +31,9 @@ export function FrontendConfig(isProduction = false) {
       isProduction && QuantumPlugin({
         bakeApiIntoBundle: 'client/bundle',
         css: true,
-        ensureES5: true,
-        removeExportsInterop: true,
         treeshake: true,
-        uglify: true
+        uglify: true,
+        replaceProcessEnv: true,
       })
     ],
     sourceMaps: !isProduction
