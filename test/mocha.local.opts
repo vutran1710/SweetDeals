@@ -2,6 +2,7 @@
 -r ts-node/register
 -r tsconfig-paths/register
 --require source-map-support/register
---bail
---exit
+--full-trace
+--extension ts,tsx
+--watch
 test/*.spec.ts

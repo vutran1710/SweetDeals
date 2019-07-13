@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose'
+import { model, models, Schema } from 'mongoose'
 
 const CalculationSchema = new Schema({
   operand: {
@@ -23,4 +23,4 @@ const CalculationSchema = new Schema({
   }
 })
 
-export const Calculation = model('Calculation', CalculationSchema)
+export const Calculation = models.Calculation || model('Calculation', CalculationSchema)
