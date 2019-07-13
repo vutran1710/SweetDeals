@@ -1,4 +1,4 @@
-import { Loading } from '@base'
+import { Loading, Page404 } from '@base'
 import { Calculator } from '@container'
 import * as React from 'react'
 import {
@@ -19,6 +19,7 @@ const Index = () => (
 export const LandingPage = () => (
   <Switch>
     <Route path="/calc" component={Calculator} />
-    <Route path="/" component={Index} />
+    <Route path="/" exact={true} component={Index} />
+    <Route component={Page404} />
   </Switch>
 )
