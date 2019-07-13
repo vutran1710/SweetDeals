@@ -15,5 +15,6 @@ function precommit {
     fi
 
 }
+echo "test........."
 
 "$@"
