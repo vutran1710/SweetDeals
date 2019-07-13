@@ -20,7 +20,7 @@ describe('## 1. Get index', () => {
       .get('/sdfsdfs')
       .expect(200)
       .end((err, res) => {
-        expect(res.text).to.contain('404')
+        expect(res.text).to.contain('104')
         done()
       })
   })
