@@ -7,8 +7,8 @@ function precommit {
     echo "==== ACTIVE BRANCH: [$current_branch]"
 
     if [ "$current_branch" == "master" ]; then
-        user=$USER
-        now=$(date+'%m%d-%H%M')
+        user="$USER"
+        now="$(date+'%m%d_%H%M')"
         git checkout -b "WIP_$user__$now"
     else
         echo "Not in master"
