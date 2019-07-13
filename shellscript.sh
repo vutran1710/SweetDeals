@@ -17,4 +17,5 @@ function precommit {
     npm run lint
 }
 
+echo "shit"
 "$@"
