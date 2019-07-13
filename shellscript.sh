@@ -13,8 +13,6 @@ function precommit {
     else
         npm run lint
     fi
-
 }
-echo "test........."
 
 "$@"
