@@ -6,7 +6,7 @@ export class Page404 extends React.Component {
   render() {
     return (
       <div>
-        <h1>404 Not Found</h1>
+        <h1>404 ERROR: Page Not Found</h1>
         <p className="zoom-area">
           <i> You  are  request  something  that  simply  doesnt  exist !</i>
         </p>
