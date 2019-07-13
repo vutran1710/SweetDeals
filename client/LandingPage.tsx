@@ -1,6 +1,6 @@
 import { Loading } from '@base'
+import { Calculator } from '@container'
 import * as React from 'react'
-import * as Loadable from 'react-loadable'
 import {
   Link,
   Route,
@@ -16,15 +16,9 @@ const Index = () => (
   </div>
 )
 
-const LazyCalculator = Loadable({
-  loader: () => import('@container/Calculator'),
-  loading: Loading,
-  render: ({ Calculator }) => <Calculator />
-})
-
 export const LandingPage = () => (
   <Switch>
-    <Route path="/calc" component={LazyCalculator} />
+    <Route path="/calc" component={Calculator} />
     <Route path="/" component={Index} />
   </Switch>
 )
