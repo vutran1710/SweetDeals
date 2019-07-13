@@ -9,12 +9,11 @@ function precommit {
     if [ "$current_branch" == "master" ]; then
         user="$USER"
         now="$(date +'%m%d_%H%M')"
-        git checkout -b "WIP_$user__$now"
+        git checkout -b "WIP_$user__$now" && npm run lint
     else
-        echo "Not in master"
+        npm run lint
     fi
 
-    npm run lint
 }
 
 "$@"
