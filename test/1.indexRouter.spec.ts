@@ -11,7 +11,7 @@ describe('## 1. Get index', () => {
     agent.get('/')
          .expect(200)
          .end((err, res) => {
-           expect(res.text).to.be.a('string')
+           expect(res.text).to.contain('Hello World')
            done()
          })
   })
