@@ -1,6 +1,3 @@
-- type: serial
-  steps:
-    - service: sweetdealstest
-      command: npm run prod
-    - service: sweetdealstest
-      command: npm run verify
+- service: sweetdealstest
+  exclude: "master"
+  command: npm run verify
