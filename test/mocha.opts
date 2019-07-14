@@ -1,7 +1,7 @@
 -r dotenv/config
 -r ts-node/register
 -r tsconfig-paths/register
---require source-map-support/register
+--full-trace
 --bail
 --exit
 test/*.spec.ts
