@@ -8,7 +8,7 @@ import { StaticRouter } from 'react-router-dom'
 import { promisify } from 'util'
 
 const router = express.Router()
-const htmlPath = 'build/index.html'
+const htmlPath = 'client/index.html'
 const readFile = promisify(fsReadFile)
 
 const jsx = (context, req) => (
