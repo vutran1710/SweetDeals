@@ -1,6 +1,5 @@
 import * as express from 'express'
 import * as request from 'supertest'
-import * as proxyquire from 'proxyquire'
 import { expect } from 'chai'
 import app from '../server/index'
 
