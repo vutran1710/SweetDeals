@@ -1,10 +1,10 @@
 import {
+  EnvPlugin,
   JSONPlugin,
   QuantumPlugin,
 } from 'fuse-box'
 
-export function BackendConfig() {
-  const isProduction = process.env.NODE_ENV === 'production'
+export function BackendConfig(isProduction) {
   return {
     homeDir: '.',
     output: 'build/$name.js',
@@ -12,6 +12,7 @@ export function BackendConfig() {
     cache: !isProduction,
     hash: isProduction,
     plugins: [
+      EnvPlugin(process.env),
       JSONPlugin(),
       isProduction && QuantumPlugin({
         target: 'server',

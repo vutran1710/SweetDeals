@@ -1,10 +1,15 @@
 import * as express from 'express'
 import * as request from 'supertest'
 import { expect } from 'chai'
-import app from '../server/index'
+import server from '../server/index'
 
-describe('## 1. Get index', () => {
-  const agent = request.agent(app)
+describe('## 1. Get pages', () => {
+  const agent = request.agent(server)
+
+  after(done => {
+    server.close()
+    done()
+  })
 
   it('1.1 Should return 200 with a html', done => {
     agent.get('/')
