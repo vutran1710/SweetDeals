@@ -10,7 +10,7 @@ export function BackendConfig(isProduction) {
     output: 'build/$name.js',
     target: 'server@esnext',
     cache: !isProduction,
-    hash: isProduction,
+    hash: false,
     plugins: [
       EnvPlugin(process.env),
       JSONPlugin(),

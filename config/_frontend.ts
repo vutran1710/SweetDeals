@@ -11,8 +11,8 @@ export function FrontendConfig(isProduction = false) {
     homeDir: '.',
     output: 'build/$name',
     target: 'browser@esnext',
-    hash: false,
     cache: !isProduction,
+    hash: isProduction,
     plugins: [
       EnvPlugin(process.env),
       WebIndexPlugin({

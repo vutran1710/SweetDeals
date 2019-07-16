@@ -12,7 +12,7 @@ testdb:
 sweetdealstest:
   build:
     image: sweetdeals
-    dockerfile: Dockerfile
+    dockerfile: Dockerfile.test
   depends_on:
     - testdb
   environment:
