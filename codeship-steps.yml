@@ -1,3 +1,10 @@
-- service: sweetdealstest
-  exclude: "master"
-  command: npm run verify
+- type: serial
+  steps:
+    - name: local_testin
+      exclude: master
+      service: sweetdeals
+      command: if [ "$CI_BRANCH" != "master" ]; then npm run verify; fi
+    - name: deploy_kubelet
+      tag: master
+      service: sweetdeals
+      command: echo "deploy with K8"

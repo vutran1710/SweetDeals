@@ -2,8 +2,10 @@ FROM node:10-jessie
 
 WORKDIR /app
 
-COPY build/ .
+COPY . .
+
+RUN npm install
 
 EXPOSE 8000
 
-CMD [ "node", "server/bundle.js" ]
+CMD ["npm" "run" "prod"]

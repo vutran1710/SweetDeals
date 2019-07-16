@@ -1,5 +1,4 @@
 .env
-.env.prod
 .gitignore
 .dockerignore
 .git
@@ -11,7 +10,6 @@
 .travis.yml
 .nyc_output
 Dockerfile
-Dockerfile.test
 docker-compose*
 coverage
 node_modules
