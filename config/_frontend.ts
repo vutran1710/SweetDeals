@@ -1,5 +1,6 @@
 import {
   CSSPlugin,
+  EnvPlugin,
   QuantumPlugin,
   SassPlugin,
   WebIndexPlugin
@@ -10,9 +11,10 @@ export function FrontendConfig(isProduction = false) {
     homeDir: '.',
     output: 'build/$name',
     target: 'browser@esnext',
-    hash: isProduction,
+    hash: false,
     cache: !isProduction,
     plugins: [
+      EnvPlugin(process.env),
       WebIndexPlugin({
         author: 'W-Team',
         charset: 'utf-8',
@@ -33,7 +35,7 @@ export function FrontendConfig(isProduction = false) {
         treeshake: true,
         uglify: true,
         replaceProcessEnv: true,
-        bakeApiIntoBundle: true,
+        bakeApiIntoBundle: 'client/bundle',
       })
     ],
     sourceMaps: !isProduction

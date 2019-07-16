@@ -22,9 +22,9 @@ app.use((err, req, res, next) => res.status(err.code).json({ error: err.error ||
 
 // tslint:disable-next-line
 mongoose.connect(db, { useNewUrlParser: true }).catch(console.error)
-app.listen(port, () => {
+const server = app.listen(port, () => {
   // tslint:disable-next-line
   console.log(`|> App started at http://localhost:${port}\n|> DB: ${db}`)
 })
 
-export default app
+export default server
