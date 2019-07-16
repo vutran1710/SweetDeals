@@ -29,20 +29,13 @@ afterwards.
 
 * Development & CICD Strategy Flow
 ** TODO Development
-*** DONE Branch *master* must be strictly protected!
-CLOSED: [2019-07-16 Tue 09:30]
-*** DONE Feature implementation must be carried out on a separate branch
-CLOSED: [2019-07-16 Tue 09:31]
-*** DONE Each commit must be *linted* locally
-CLOSED: [2019-07-16 Tue 09:31]
-*** DONE If dev tries to commit on master branch, use husky to auto switch to a separated feature branch
-CLOSED: [2019-07-16 Tue 09:31]
-*** DONE To merge to master branch, a *PullRequest* must be submitted
-CLOSED: [2019-07-16 Tue 09:31]
+- [x] Branch *master* must be strictly protected!
+- [x] Feature implementation must be carried out on a separate branch
+- [x] Each commit must be *linted* locally
+- [x] If dev tries to commit on master branch, use husky to auto switch to a separated feature branch
+- [x] To merge to master branch, a *PullRequest* must be submitted
 ** TODO PullRequest & CICD
-*** DONE Each PR will be verifed with automation of testing & bundling
-CLOSED: [2019-07-16 Tue 09:31]
-*** DONE If successful, allow to merge to *Master*
-CLOSED: [2019-07-16 Tue 09:31]
-*** [ ] Deploy to a container
-*** [ ] Auto deploy upon merge to master
+- [x] Each PR will be verifed with automation of testing & bundling
+- [x] If successful, allow to merge to *Master*
+- [ ] Deploy with K8s
+- [ ] Auto deploy upon merge to master
