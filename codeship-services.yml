@@ -9,12 +9,9 @@ testdb:
   volumes:
     - /db_test
   cached: true
-sweetdealstest:
+sweetdeals:
   build:
-    image: sweetdeals
     dockerfile: Dockerfile
   depends_on:
     - testdb
-  environment:
-    DB: mongodb://root:1234@testdb/test
   cached: true

@@ -1,5 +1,6 @@
 .env
 .gitignore
+.dockerignore
 .git
 .db
 .fusebox
@@ -8,6 +9,7 @@
 .python-version
 .travis.yml
 .nyc_output
+Dockerfile
 docker-compose*
 coverage
 node_modules

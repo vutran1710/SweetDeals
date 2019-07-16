@@ -10,7 +10,6 @@
 - [[#development--cicd-strategy-flow][Development & CICD Strategy Flow]]
   - [[#development][Development]]
   - [[#pullrequest--cicd][PullRequest & CICD]]
-  - [[#delivery][Delivery]]
 
 * Introduction
 SweetDeals is a complete heavy Javascript/Typescript-oriented application that aims towards easy sharing deals
@@ -29,14 +28,14 @@ afterwards.
 - DevOps workflow, including CICD and Deployment
 
 * Development & CICD Strategy Flow
-** Development
-[x] Branch *master* must be strictly protected!
-[x] Feature implementation must be carried out on a separate branch
-[x] Each commit must be *linted* locally
-[x] If dev tries to commit on master branch, use husky to auto switch to a separated feature branch
-[x] To merge to master branch, a *PullRequest* must be submitted
-** PullRequest & CICD
-[ ] Each PR will be verifed with automation of testing & bundling
-** Delivery
-[ ] If successful, allow to merge to *Master*
-[ ] After merge, swap the code on server on finished
+** TODO Development
+- [x] Branch *master* must be strictly protected!
+- [x] Feature implementation must be carried out on a separate branch
+- [x] Each commit must be *linted* locally
+- [x] If dev tries to commit on master branch, use husky to auto switch to a separated feature branch
+- [x] To merge to master branch, a *PullRequest* must be submitted
+** TODO PullRequest & CICD
+- [x] Each PR will be verifed with automation of testing & bundling
+- [x] If successful, allow to merge to *Master*
+- [ ] Deploy with K8s
+- [ ] Auto deploy upon merge to master
