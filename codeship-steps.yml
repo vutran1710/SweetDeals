@@ -3,7 +3,7 @@
     - name: local_testin
       exclude: master
       service: sweetdeals
-      command: if [ "$CI_BRANCH" != "master" ]; then npm run verify; fi
+      command: npm run verify
     - name: deploy_kubelet
       tag: master
       service: sweetdeals
