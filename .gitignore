@@ -8,3 +8,4 @@ node_modules
 .fusebox
 build
 .env.prod
+regcred.yaml
