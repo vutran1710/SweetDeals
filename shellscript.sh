@@ -28,7 +28,7 @@ function publish_new_image {
 
 function roll_update {
     version=$(get_version)
-    kubectl rolling-update app-controller --image=vutrio/sweetdeals-image-demo:$version
+    kubectl rollout app-controller --image=vutrio/sweetdeals-image-demo:$version
 }
 
 "$@"

@@ -14,4 +14,5 @@ sweetdeals:
     dockerfile: Dockerfile
   depends_on:
     - testdb
+  add_docker: true
   cached: true
