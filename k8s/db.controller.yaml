@@ -14,6 +14,13 @@ spec:
       containers:
       - image: bitnami/mongodb:latest
         name: mongo
+        env:
+          - name: MONGODB_USERNAME
+            value: "root"
+          - name: MONGODB_PASSWORD
+            value: "1234"
+          - name: MONGODB_DATABASE
+            value: "prod"
         ports:
         - name: mongo
           containerPort: 27017

@@ -14,3 +14,4 @@ docker-compose*
 coverage
 node_modules
 build
+regcred.yaml
