@@ -1,7 +1,6 @@
 #!/bin/sh
 
 PACKAGE_VERSION="$(node -pe \"require('./package.json').version\")"
-echo 'PUBLISHING NEW APP IMAGE'
 version="$(get_version)"
 echo "- version: $version"
 echo "- build: docker build -t vutrio/sweetdeals-image-demo:$version ."
