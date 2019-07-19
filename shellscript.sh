@@ -21,8 +21,12 @@ function get_version {
 }
 
 function publish_new_image {
+    echo "PUBLISHING NEW APP IMAGE >>>"
     version=$(get_version)
+    echo "- version: $version"
+    echo "- build: docker build -t vutrio/sweetdeals-image-demo:$version ."
     docker build -t vutrio/sweetdeals-image-demo:$version .
+    echo "- publish: docker push vutrio/sweetdeals-image-demo:$version"
     docker push vutrio/sweetdeals-image-demo:$version
 }
 
