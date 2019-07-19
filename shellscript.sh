@@ -1,7 +1,8 @@
 #!/bin/sh
 PATH=./node_modules/.bin:$PATH
 
-function precommit {
+precommit()
+{
     current_branch=$(git rev-parse --abbrev-ref HEAD)
 
     echo "==== ACTIVE BRANCH: [$current_branch]"
@@ -15,12 +16,14 @@ function precommit {
     fi
 }
 
-function get_version {
+get_version()
+{
     PACKAGE_VERSION=$(node -pe "require('./package.json').version")
     echo $PACKAGE_VERSION
 }
 
-function publish_new_image {
+publish_new_image()
+{
     echo "PUBLISHING NEW APP IMAGE >>>"
     version=$(get_version)
     echo "- version: $version"
@@ -30,7 +33,8 @@ function publish_new_image {
     docker push vutrio/sweetdeals-image-demo:$version
 }
 
-function roll_update {
+roll_update()
+{
     version=$(get_version)
     kubectl rollout app-controller --image=vutrio/sweetdeals-image-demo:$version
 }
