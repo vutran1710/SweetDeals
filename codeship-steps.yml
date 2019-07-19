@@ -7,7 +7,10 @@
     - name: publish_new_image
       tag: master
       service: sweetdeals
-      command: bash shellscript.sh publish_new_image
+      type: push
+      image_name: vutrio/sweetdeals-image-demo
+      image_tag: bash shellscript.sh get_version
+      encrypted_dockercfg_path: dockercfg.encrypted
     - name: update
       tag: master
       service: kubectl

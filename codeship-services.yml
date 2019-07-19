@@ -14,8 +14,6 @@ sweetdeals:
     dockerfile: Dockerfile
   depends_on:
     - testdb
-  add_docker: true
-  encrypted_dockercfg_path: dockercfg.encrypted
 kubectl:
   build:
     image: codeship/kubectl
