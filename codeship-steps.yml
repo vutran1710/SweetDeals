@@ -7,4 +7,4 @@
     - name: update
       # tag: master
       service: kubectl
-      command: build
+      command: buildscript.sh

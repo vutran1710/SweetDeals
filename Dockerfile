@@ -6,7 +6,7 @@ COPY . .
 
 RUN chmod +x shellscript.sh
 
-RUN chmod +x build.sh
+RUN chmod +x buildscript.sh
 
 RUN npm install
 
