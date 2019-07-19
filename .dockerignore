@@ -12,7 +12,7 @@
 Dockerfile
 docker-compose*
 coverage
-node_modules
+node_modules/
 build
 regcred.yaml
 codeship.aes
