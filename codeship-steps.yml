@@ -10,4 +10,4 @@
       command: npm run docker:publish
     - name: deploy with kubec
       service: kubectl
-      command: . ./shellscript.sh get_version
+      command: chmod +x shellscript.sh && . ./shellscript.sh get_version
