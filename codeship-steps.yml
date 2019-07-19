@@ -14,7 +14,7 @@
     - name: check response to kubectl config
       tag: master
       service: kubectl
-      command: kubectl config view
+      command: kubectl config get-contexts
     - name: deploy app
       tag: master
       service: kubectl
