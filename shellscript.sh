@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 PATH=./node_modules/.bin:$PATH
 
 function precommit {

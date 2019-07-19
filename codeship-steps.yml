@@ -7,7 +7,7 @@
     - name: publish_new_image
       # tag: master
       service: sweetdeals
-      command: docker build -t vutrio/sweetdeals-image-demo:$(node -pe "require('./package.json').version") .
+      command: npm run docker:publish
     - name: update
       # tag: master
       service: kubectl
