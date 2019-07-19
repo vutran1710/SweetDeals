@@ -1,4 +1,5 @@
-# !/bin/sh
+#!/bin/sh
+
 PACKAGE_VERSION=$(cat package.json \
   | grep version \
   | head -1 \
