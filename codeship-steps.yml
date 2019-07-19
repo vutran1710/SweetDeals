@@ -7,8 +7,8 @@
     - name: publish_new_image
       tag: master
       service: sweetdeals
-      command: bash -c "npm run docker:publish"
+      command: bash shellscript.sh publish_new_image
     - name: update
       tag: master
       service: kubectl
-      command: npm run kube:update
+      command: bash shellscript.sh roll_update
