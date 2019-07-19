@@ -8,7 +8,9 @@
       tag: master
       service: sweetdeals
       command: npm run docker:publish
-    - name: deploy with kubec
+    - name: permitting script
       service: kubectl
-      # command: chmod +x shellscript.sh && . ./shellscript.sh get_version
-      command: ls -al
+      command: chmod +x ./shellscript.sh
+    - name: get app version
+      service: kubectl
+      command: . ./shellscript.sh get_version
