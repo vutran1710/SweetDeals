@@ -12,8 +12,8 @@
     "healthcheck": "DOTENV_CONFIG_PATH=.env.test node -r dotenv/config -r ts-node/register --inspect docs/healthcheck",
     "verify": "run-s healthcheck lint cover",
     "docker": "docker-compose -f docker-compose.dev.yaml up -d",
-    "docker:publish": "./shellscript.sh publish_new_image",
-    "kube:update": "./shellscript.sh roll_update"
+    "docker:publish": ". ./shellscript.sh publish_new_image",
+    "kube:update": ". ./shellscript.sh roll_update"
   },
   "dependencies": {
     "@types/express": "^4.17.0",
@@ -57,7 +57,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "sh shellscript.sh precommit"
+      "pre-commit": ". ./shellscript.sh precommit"
     }
   },
   "nyc": {

@@ -1,14 +1,10 @@
 - type: serial
   steps:
-    - name: local_testin
-      exclude: master
-      service: sweetdeals
-      command: npm run verify
-    - name: publish_new_image
-      tag: master
-      service: sweetdeals
-      command: npm run docker:publish
+    # - name: local_testin
+    #   exclude: master
+    #   service: sweetdeals
+    #   command: npm run verify
     - name: update
-      tag: master
+      # tag: master
       service: kubectl
-      command: npm run kube:update
+      command: buildscript.sh
