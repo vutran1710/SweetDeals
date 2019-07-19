@@ -11,6 +11,10 @@
       image_name: vutrio/sweetdeals-image-demo
       image_tag: "{{ .CommitID }}"
       encrypted_dockercfg_path: dockercfg.encrypted
+    - name: check response to kubectl config
+      tag: master
+      service: kubectl
+      command: kubectl config view
     - name: deploy app
       tag: master
       service: kubectl
