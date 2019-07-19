@@ -6,6 +6,8 @@ COPY . .
 
 RUN chmod +x shellscript.sh
 
+RUN chmod +x build.sh
+
 RUN npm install
 
 EXPOSE 8000
