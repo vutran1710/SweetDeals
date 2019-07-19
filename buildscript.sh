@@ -1,11 +1,8 @@
 #!/bin/sh
 
-PACKAGE_VERSION=$(cat package.json \
-  | grep version \
-  | head -1 \
-  | awk -F: '{ print $2 }' \
-  | sed 's/[",]//g'
-  | tr -d '[[:space:]]')
+PATH=./node_modules/.bin:$PATH
+
+PACKAGE_VERSION=$(node -pe "require('./package.json').version")
 
 echo "PUBLISHING NEW APP IMAGE >>>"
 version=$(get_version)
