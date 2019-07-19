@@ -1,17 +1,17 @@
 - type: serial
   steps:
-    - name: local_testin
+    - name: testing
       exclude: master
       service: sweetdeals
       command: npm run verify
-    - name: publish_new_image
+    - name: publish new docker image
       tag: master
       service: sweetdeals
       type: push
       image_name: vutrio/sweetdeals-image-demo
       image_tag: "{{ .CommitID }}"
       encrypted_dockercfg_path: dockercfg.encrypted
-    - name: deploy_new_app_version
+    - name: deploy app
       tag: master
       service: kubectl
-      command: kubectl rollout app-controller --image=vutrio/sweetdeals-image-demo:"{{ .CommitID }}"
+      command: "kubectl rollout app-controller --image=vutrio/sweetdeals-image-demo:{{ .CommitID }}"
