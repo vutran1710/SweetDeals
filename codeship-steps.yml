@@ -14,4 +14,4 @@
     - name: deploy app
       tag: master
       service: kubectl
-      command: "kubectl rollout app-controller --image=vutrio/sweetdeals-image-demo:{{ .CommitID }}"
+      command: bash -c "kubectl rollout app-controller --image=vutrio/sweetdeals-image-demo:{{ .CommitID }}"
