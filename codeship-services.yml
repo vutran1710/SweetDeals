@@ -15,12 +15,12 @@ sweetdeals:
   depends_on:
     - testdb
   add_docker: true
+  encrypted_dockercfg_path: dockercfg.encrypted
   cached: true
 kubectl:
   build:
     image: codeship/kubectl
     dockerfile: Dockerfile
   add_docker: true
-  encrypted_dockercfg_path: dockercfg.encrypted
   encrypted_env_file:
     - k8s-env.encrypted
