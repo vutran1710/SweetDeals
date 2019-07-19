@@ -9,3 +9,4 @@ node_modules
 build
 .env.prod
 regcred.yaml
+codeship.aes
