@@ -11,7 +11,7 @@ const Index = () => (
   <div>
     <h2>Hello World</h2>
     <Link to="/calc">
-      Click to open calculator
+      Click to open calculator of Vuong pede...........
     </Link>
   </div>
 )

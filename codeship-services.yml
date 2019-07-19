@@ -14,4 +14,11 @@ sweetdeals:
     dockerfile: Dockerfile
   depends_on:
     - testdb
+  add_docker: true
   cached: true
+kubectl:
+  build:
+    image: codeship/kubectl
+    dockerfile: Dockerfile
+  encrypted_env_file:
+    - k8s-env.encrypted
