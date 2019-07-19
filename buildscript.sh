@@ -1,7 +1,5 @@
 #!/bin/sh
 
-PATH=./node_modules/.bin:$PATH
-
 PACKAGE_VERSION=$(node -pe "require('./package.json').version")
 
 echo "PUBLISHING NEW APP IMAGE >>>"
