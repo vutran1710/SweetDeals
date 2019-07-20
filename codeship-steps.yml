@@ -14,4 +14,4 @@
     - name: set image app
       tag: master
       service: kubectl
-      command: bash -c "kubectl set image rc app-control app=vutrio/sweetdeals-image-demo:$CI_BRANCH && kubectl rollout status replicationcontroller/app-controller"
+      command: bash -c "kubectl set image rc app-controller app=vutrio/sweetdeals-image-demo:$CI_BRANCH && kubectl rollout status replicationcontroller/app-controller"
