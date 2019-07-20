@@ -11,7 +11,7 @@
     #   image_name: vutrio/sweetdeals-image-demo
     #   image_tag: "{{ .Branch }}"
     #   encrypted_dockercfg_path: dockercfg.encrypted
-    - name: deploy app
+    - name: set image app
       tag: master
       service: kubectl
-      command: /bin/sh -c "kubectl get all && kubectl rolling-update app-controller --image=vutrio/sweetdeals-image-demo:$CI_BRANCH"
+      command: bash -c "kubectl set image rc app-control app=vutrio/sweetdeals-image-demo:$CI_BRANCH && kubectl rollout status replicationcontroller/app-controller"
