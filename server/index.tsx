@@ -7,8 +7,8 @@ import {
 } from './routes'
 
 const app = express()
-const port = process.env.PORT || '8000'
-const db = process.env.DB || 'mongodb://root:1234@mongo/prod'
+const port = process.env.PORT
+const db = process.env.DB
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))

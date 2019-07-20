@@ -1,21 +1,21 @@
-apiVersion: v1
-kind: ReplicationController
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  labels:
-    name: app
-  name: app-controller
+  name: my-app
 spec:
+  selector:
+    matchLabels:
+      run: my-app
   replicas: 2
   template:
     metadata:
       labels:
-        name: app
+        run: my-app
     spec:
       containers:
-      - image: vutrio/sweetdeals-image-demo
-        name: app
+      - name: my-app
+        image: vutrio/sweetdeals-image-demo:latest
         ports:
         - containerPort: 8000
-          name: http-server
       imagePullSecrets:
         - name: regcred
