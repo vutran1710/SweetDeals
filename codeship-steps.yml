@@ -11,11 +11,7 @@
       image_name: vutrio/sweetdeals-image-demo
       image_tag: "{{ .Branch }}"
       encrypted_dockercfg_path: dockercfg.encrypted
-    - name: check response to kubectl config
-      tag: master
-      service: kubectl
-      command: bash -c "echo $CI_BRANCH"
     - name: deploy app
       tag: master
       service: kubectl
-      command: bash -c "kubectl rolling-update app-controller --image=vutrio/sweetdeals-image-demo:$CI_BRANCH"
+      command: /bin/sh -c 'kubectl rolling-update app-controller --image=vutrio/sweetdeals-image-demo:$CI_BRANCH'
