@@ -15,6 +15,10 @@
       tag: master
       service: kubectl
       command: kubectl config view
+    - name: get commit id
+      tag: master
+      service: kubectl
+      command: echo $CI_COMMIT_ID
     - name: deploy app
       tag: master
       service: kubectl
