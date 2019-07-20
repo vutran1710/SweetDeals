@@ -63,7 +63,7 @@ export class Calculator extends React.Component {
       headers: { 'Content-Type': 'application/json' }
     }
 
-    const url = process.env.ORIGIN + '/calc'
+    const url = (process.env.ORIGIN || '') + '/calc'
 
     fetch(url, requestOptions)
       .then(resp => resp.json())

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node -r dotenv/config -r ts-node/register --inspect fuse.ts",
-    "prod": "DOTENV_CONFIG_PATH=.env.prod node -r dotenv/config -r ts-node/register fuse.ts",
+    "prod": "NODE_ENV=production node -r ts-node/register fuse.ts",
     "lint": "tslint --fix -c tslint.json '{client,server}/**/*.{ts,tsx}'",
     "test": "DOTENV_CONFIG_PATH=.env.test mocha --opts test/mocha.local.opts",
     "cover": "DOTENV_CONFIG_PATH=.env.test nyc mocha --opts test/mocha.opts",
