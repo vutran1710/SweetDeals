@@ -16,7 +16,5 @@ sweetdeals:
     - testdb
 kubectl:
   image: codeship/kubectl
-  add_docker: true
   encrypted_env_file:
     - k8s-env.encrypted
-  cached: true
