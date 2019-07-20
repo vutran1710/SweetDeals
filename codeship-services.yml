@@ -16,5 +16,7 @@ sweetdeals:
     - testdb
 kubectl:
   image: codeship/kubectl
+  environment:
+    TAG: "{{ .Branch }}"
   encrypted_env_file:
     - k8s-env.encrypted
