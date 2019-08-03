@@ -3,7 +3,6 @@ import { Calculation } from '@model'
 import * as express from 'express'
 import { pick } from 'ramda'
 import {
-  debug,
   handleException,
   ThrowOn,
 } from './helper'
