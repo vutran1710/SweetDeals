@@ -19,7 +19,7 @@ const backendServe = () => {
   const config = BackendConfig(isProduction)
   const fuse = FuseBox.init({ ...config, alias })
   const bundle = isProduction ? fuse.bundle('server/bundle') : fuse.bundle('server/bundle').watch('server/**/*.(ts|tsx)')
-  bundle.instructions('> [server/index.tsx]').completed(proc => !isProduction && proc.start())
+  bundle.instructions('> [server/index.tsx]').completed(proc => proc.start())
   return fuse.run()
 }
 
