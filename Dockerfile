@@ -11,9 +11,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install
-
-RUN ["NODE_ENV=production", "npm run prod"]
+RUN npm install && NODE_ENV=production npm run prod
 
 EXPOSE 8000
 
