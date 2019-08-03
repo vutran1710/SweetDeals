@@ -13,8 +13,8 @@ COPY . .
 
 RUN npm install
 
-RUN "NODE_ENV=production npm run prod"
+RUN ["NODE_ENV=production", "npm run prod"]
 
 EXPOSE 8000
 
-CMD "node build/server/bundle.js"
+CMD ["node", "build/server/bundle.js"]
