@@ -19,7 +19,7 @@ afterwards.
 
 * Features
 - The full circle of software development
-- A complete, or *full-stack so to say,* javascript application
+- A complete, or *full-stack* so to say, javascript application
   - TypeScript integration - the benefit & the tax
   - How Fuse-Box can be a great alternative to *webpack*
   - Mongodb, ExpressJS, React Server-side Rendering
