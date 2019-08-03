@@ -2,7 +2,7 @@
   steps:
     - name: testing
       exclude: master
-      service: sweetdeals
+      service: testapp
       command: npm run verify
     - name: publish new docker image
       tag: master

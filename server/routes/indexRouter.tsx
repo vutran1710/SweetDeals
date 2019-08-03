@@ -8,7 +8,7 @@ import { StaticRouter } from 'react-router-dom'
 import { promisify } from 'util'
 
 const router = express.Router()
-const htmlPath = process.env.NODE_ENV === 'test' ? 'client/index.html' : 'build/index.html'
+const htmlPath = process.env.HTML_PATH
 const readFile = promisify(fsReadFile)
 
 const jsx = (context, req) => (
@@ -21,9 +21,7 @@ router.get('/*', (req, res) => {
   const context = {}
   const renderApp = ReactDOMServer.renderToString(jsx(context, req))
   const responseRender = templateString => res.send(template(templateString, { renderApp }))
-  // TODO: replace {error} with 500.html
-  const errorReadfile = error => res.status(500).send({ error })
-  return readFile(htmlPath, 'utf-8').then(responseRender).catch(errorReadfile)
+  return readFile(htmlPath, 'utf-8').then(responseRender)
 })
 
 export const indexRouter = router

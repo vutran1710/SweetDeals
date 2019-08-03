@@ -5,9 +5,3 @@ export const ThrowOn = (condition, msg) => {
     throw msg
   }
 }
-
-export const debug = str => {
-  // NOTE: reseve for logging
-  // tslint:disable-next-line
-  console.log(str)
-}
