@@ -5,6 +5,9 @@
 #+EMAIL: me@vutr.io`
 
 * Content                                                               :TOC:
+
+  #+ATTR_HTML: title="Codacy Badge"
+  [[https://app.codacy.com/app/vutran1710/SweetDeals?utm_source=github.com&utm_medium=referral&utm_content=vutran1710/SweetDeals&utm_campaign=Badge_Grade_Settings][file:https://api.codacy.com/project/badge/Grade/bc7de7ef069847a2ba9d982749597824]]
 - [[#introduction][Introduction]]
 - [[#features][Features]]
 - [[#development--cicd-strategy-flow][Development & CICD Strategy Flow]]
