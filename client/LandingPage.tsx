@@ -1,4 +1,7 @@
-import { Loading, Page404 } from '@base'
+import {
+  Loading,
+  Page404,
+} from '@base'
 import * as React from 'react'
 import * as Loadable from 'react-loadable'
 import {

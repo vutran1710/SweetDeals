@@ -13,6 +13,9 @@ export function FrontendConfig(isProduction = false) {
     target: 'browser@esnext',
     cache: !isProduction,
     hash: isProduction,
+    log: {
+      enabled: !isProduction,
+    },
     plugins: [
       EnvPlugin(process.env),
       WebIndexPlugin({

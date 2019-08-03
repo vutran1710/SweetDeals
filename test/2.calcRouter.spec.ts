@@ -1,10 +1,9 @@
-import * as request from 'supertest'
-import { expect } from 'chai'
-import { Calculation } from '@model'
 import { ERROR_MSG } from '@constant'
+import { Calculation } from '@model'
+import { expect } from 'chai'
+import * as request from 'supertest'
 import app from '../server/index'
 import { calculator } from '../server/routes/calcRouter'
-
 
 describe('Creating documents', () => {
   const task = { a: 1, b: 2, operand: 'add' }
@@ -66,6 +65,5 @@ describe('Creating documents', () => {
                 .expect(evalError(ERROR_MSG.UNSUPORTED))
                 .end(done)
   })
-
 
 })

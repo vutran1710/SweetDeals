@@ -6,13 +6,12 @@ function precommit() {
 
     echo "==== ACTIVE BRANCH: [$current_branch]"
 
-    # if [ "$current_branch" == "master" ]; then
-    #     user="$USER"
-    #     now="$(date +'%m%d_%H%M')"
-    #     git checkout -b "WIP_$user__$now" && npm run lint
-    # else
-    #     npm run lint
-    # fi
+    if [ "$current_branch" == "master" ]; then
+        branch="feat/$(echo $USER)_$(date +'%m%d%y_%H%M')"
+        git checkout -b "$branch" && npm run lint
+    else
+        npm run lint
+    fi
 }
 
 "$@"
