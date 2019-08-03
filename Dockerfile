@@ -14,8 +14,6 @@ COPY . .
 
 RUN npm install
 
-RUN echo $DB
-
 EXPOSE 8000
 
 CMD npm run prod
