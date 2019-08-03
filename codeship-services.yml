@@ -17,8 +17,7 @@ testapp:
 sweetdeals:
   build:
     dockerfile: Dockerfile
-  encrypted_env_file:
-    - prod-env.encrypted
+    encrypted_args_file: prod-env.encrypted
 kubectl:
   image: codeship/kubectl
   encrypted_env_file:
