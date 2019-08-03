@@ -16,11 +16,13 @@ const baseOr = (...args) => bol => {
 }
 
 /*
- * Usage: or(truthy | function to apply when true, falsy | function to apply when falsy..., ...other arguments to reduce if needed)(boolean function | boolean value)(value)
+ * Usage: or(truthyValue | function to apply when true, falsy | function to apply when falsy...,
+ * ...other arguments to reduce if needed)(boolean function | boolean value)(value)
  * Can be curried with more than 3 arguments
  * With 2 arguments: valule => or(truthy-value | truthy function, falsy-value | falsy-function)(value)
  * With 3+ arguments: value => or(a1, a2, a3...)(value) // Will resolve to the first truthy value
- * Can be use with extra function to confirm boolean (_.isNil, _.isString, _.isNumber...): value => (or(a1, a2)(checkFuction))(value)
+ * Can be use with extra function to confirm boolean...
+ * eg: (_.isNil, _.isString, _.isNumber...): value => (or(a1, a2)(checkFuction))(value)
  */
 export const or = (...args) => arg2 => !isFunction(arg2)
   ? (baseOr(...args))(arg2)
@@ -37,7 +39,7 @@ export const flush = options => obj => {
 // Resolve 2nd/3rd arguments when first argument is truthy
 export const when = arg1 => arg2 => arg1 ? arg2 : null
 
-export const assign = (src, dest) => Object.assign(src, dest)
+export const assign = (src, dest) => ({ ...src, ...dest })
 
 interface IMatcherConfig {
   returnedValue?: any
