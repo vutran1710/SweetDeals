@@ -11,8 +11,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install && NODE_ENV=production npm run prod
+RUN npm install
 
 EXPOSE 8000
 
-CMD ["node", "build/server/bundle.js"]
+CMD NODE_ENV=production npm run prod
