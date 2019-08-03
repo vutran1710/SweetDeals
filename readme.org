@@ -5,11 +5,17 @@
 #+EMAIL: me@vutr.io`
 
 * Content                                                               :TOC:
+- [[#project-status][Project Status]]
 - [[#introduction][Introduction]]
 - [[#features][Features]]
 - [[#development--cicd-strategy-flow][Development & CICD Strategy Flow]]
   - [[#development][Development]]
   - [[#pullrequest--cicd][PullRequest & CICD]]
+
+* Project Status
+[![Codeship Status for vutran1710/SweetDeals](https://app.codeship.com/projects/a46692e0-7183-0137-2e01-625d4d4a40bb/status?branch=master)](https://app.codeship.com/projects/348423)
+[![Codacy
+Badge](https://api.codacy.com/project/badge/Grade/48662943a8224bd7905e28fbcc9f3ef6)](https://www.codacy.com/app/vutran1710/SweetDeals?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vutran1710/SweetDeals&amp;utm_campaign=Badge_Grade)
 
 * Introduction
 SweetDeals is a complete heavy Javascript/Typescript-oriented application that aims towards easy sharing deals

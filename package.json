@@ -6,7 +6,7 @@
   "scripts": {
     "start": "DOTENV_CONFIG_PATH=.env.dev node -r dotenv/config -r ts-node/register --inspect fuse.ts",
     "prod": "node -r dotenv/config -r ts-node/register fuse.ts",
-    "lint": "tslint --fix -c tslint.json '{client,server}/**/*.{ts,tsx}'",
+    "lint": "tslint --fix -c tslint.json '{client,server,test}/**/*.{ts,tsx}'",
     "test": "DOTENV_CONFIG_PATH=.env.test mocha --opts test/mocha.local.opts",
     "cover": "DOTENV_CONFIG_PATH=.env.test nyc mocha --opts test/mocha.opts",
     "healthcheck": "DOTENV_CONFIG_PATH=.env.test node -r dotenv/config -r ts-node/register --inspect docs/healthcheck",
@@ -51,6 +51,7 @@
     "ts-node": "^8.2.0",
     "tsconfig-paths": "^3.8.0",
     "tslint": "^5.17.0",
+    "tslint-no-unused-expression-chai": "^0.1.4",
     "tslint-react": "^4.0.0",
     "typescript": "^3.5.2",
     "uglify-js": "^3.6.0"

@@ -1,6 +1,6 @@
+import { expect } from 'chai'
 import * as express from 'express'
 import * as request from 'supertest'
-import { expect } from 'chai'
 import server from '../server/index'
 
 describe('## 1. Get pages', () => {
