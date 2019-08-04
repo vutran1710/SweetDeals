@@ -7,10 +7,8 @@
     - name: publish new docker image
       tag: master
       service: sweetdeals
-      type: push
-      image_name: vutrio/sweetdeals-image-demo
-      image_tag: "{{ .CommitID }}"
       encrypted_dockercfg_path: dockercfg.encrypted
+      command: "npm run prod && docker build -f Dockerfile.prod -t $CI_COMMIT_ID && docker push vutrio/sweetdeals-image-demo:$CI_COMMIT_ID"
     - name: set image app
       tag: master
       service: kubectl
