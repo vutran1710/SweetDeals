@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-PATH=./node_modules/.bin:$PATH
+export PATH=./node_modules/.bin:$PATH
 
 function precommit() {
     current_branch=$(git rev-parse --abbrev-ref HEAD)
