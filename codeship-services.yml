@@ -18,6 +18,8 @@ sweetdeals:
   build:
     dockerfile: Dockerfile
   add_docker: true
+  volumes:
+    - /root/app:/root/app
   encrypted_env_file:
     - .env.prod.encrypted
 kubectl:
