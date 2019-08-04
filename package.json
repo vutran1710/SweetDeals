@@ -6,14 +6,12 @@
   "scripts": {
     "start": "DOTENV_CONFIG_PATH=.env.dev node -r dotenv/config -r ts-node/register --inspect fuse.ts",
     "prod": "node -r dotenv/config -r ts-node/register fuse.ts",
-    "lint": "tslint --fix -c tslint.json '{client,server}/**/*.{ts,tsx}'",
+    "lint": "tslint --fix -c tslint.json '{common,client,server,test}/**/*.{ts,tsx}'",
     "test": "DOTENV_CONFIG_PATH=.env.test mocha --opts test/mocha.local.opts",
     "cover": "DOTENV_CONFIG_PATH=.env.test nyc mocha --opts test/mocha.opts",
     "healthcheck": "DOTENV_CONFIG_PATH=.env.test node -r dotenv/config -r ts-node/register --inspect docs/healthcheck",
     "verify": "run-s healthcheck lint cover",
-    "docker": "docker-compose -f docker-compose.dev.yaml up -d",
-    "docker:publish": "./shellscript.sh publish_new_image",
-    "kube:update": "./shellscript.sh roll_update"
+    "docker": "docker-compose up -d"
   },
   "dependencies": {
     "@types/express": "^4.17.0",
@@ -51,6 +49,7 @@
     "ts-node": "^8.2.0",
     "tsconfig-paths": "^3.8.0",
     "tslint": "^5.17.0",
+    "tslint-no-unused-expression-chai": "^0.1.4",
     "tslint-react": "^4.0.0",
     "typescript": "^3.5.2",
     "uglify-js": "^3.6.0"
@@ -62,7 +61,8 @@
   },
   "nyc": {
     "include": [
-      "server/**"
+      "server/**",
+      "common/**"
     ],
     "exclude": [
       "test/**"
@@ -80,25 +80,25 @@
       "html"
     ],
     "check-coverage": true,
-    "branches": 80,
-    "lines": 80,
-    "functions": 80,
-    "statements": 80,
+    "branches": 90,
+    "lines": 90,
+    "functions": 90,
+    "statements": 90,
     "watermarks": {
       "lines": [
-        80,
+        90,
         95
       ],
       "functions": [
-        80,
+        90,
         95
       ],
       "branches": [
-        80,
+        90,
         95
       ],
       "statements": [
-        80,
+        90,
         95
       ]
     },

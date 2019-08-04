@@ -1,7 +1,7 @@
 {
-  "extends": ["tslint:latest", "tslint-react"],
+  "extends": ["tslint:latest", "tslint-react", "tslint-no-unused-expression-chai"],
   "rules": {
-    "max-line-length": [true, 100],
+    "max-line-length": [true, 120],
     "no-implicit-dependencies": false,
     "no-submodule-imports": false,
     "semicolon": [true, "never", "ignore-interfaces"],
