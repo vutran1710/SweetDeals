@@ -7,7 +7,7 @@
     - name: publish new docker image
       service: sweetdeals
       encrypted_dockercfg_path: dockercfg.encrypted
-      command: shellscript.sh publish
+      command: npm run publish
     - name: set image app
       tag: master
       service: kubectl
