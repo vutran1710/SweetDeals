@@ -5,10 +5,9 @@
       service: testapp
       command: npm run verify
     - name: publish new docker image
-      tag: master
       service: sweetdeals
       encrypted_dockercfg_path: dockercfg.encrypted
-      command: "npm run prod && docker build -f Dockerfile.prod -t $CI_COMMIT_ID && docker push vutrio/sweetdeals-image-demo:$CI_COMMIT_ID"
+      command: ./shellscript.sh publish
     - name: set image app
       tag: master
       service: kubectl
