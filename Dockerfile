@@ -1,11 +1,4 @@
-FROM node:10-jessie
-
-ARG PORT
-ARG ORIGIN
-ARG DB
-ARG HTML_PATH
-
-ENV PORT=$PORT ORIGIN=$ORIGIN DB=$DB HTML_PATH=$HTML_PATH
+FROM node:10-alpine
 
 WORKDIR /app
 
@@ -15,4 +8,4 @@ RUN npm install
 
 EXPOSE 8000
 
-CMD NODE_ENV=production npm run prod
+CMD npm run prod
