@@ -17,6 +17,7 @@ testapp:
 sweetdeals:
   build:
     dockerfile: Dockerfile
+  add_docker: true
   encrypted_env_file:
     - .env.prod.encrypted
 kubectl:

@@ -1,0 +1,9 @@
+FROM node:10-alpine
+
+WORKDIR /app
+
+COPY build/ .
+
+EXPOSE 8000
+
+CMD node server/bundle.js
