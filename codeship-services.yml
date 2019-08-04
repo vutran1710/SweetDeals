@@ -9,15 +9,14 @@ testdb:
   volumes:
     - /db_test
   cached: true
-testapp:
-  build:
-    dockerfile: Dockerfile
-  depends_on:
-    - testdb
 sweetdeals:
   build:
-    dockerfile: Dockerfile
-    encrypted_args_file: .env.prod.encrypted
+    dockerfile: Dockerfile.build
+  depends_on:
+    - testdb
+  encrypted_env_file:
+    - .env.prod.encrypted
+  add_docker: true
 kubectl:
   image: codeship/kubectl
   encrypted_env_file:

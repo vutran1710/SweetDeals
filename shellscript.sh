@@ -14,4 +14,10 @@ function precommit() {
     fi
 }
 
+function publish() {
+    docker login
+    docker build -f Dockerfile.app -t $CI_COMMIT_ID
+    docker push vutrio/sweetdeals-image-demo:$CI_COMMIT_ID
+}
+
 "$@"

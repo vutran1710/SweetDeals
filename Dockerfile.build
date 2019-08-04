@@ -1,0 +1,11 @@
+FROM node:10-alpine
+
+WORKDIR /app
+
+COPY . .
+
+RUN NODE_ENV=development npm install
+
+EXPOSE 8000
+
+CMD npm run prod

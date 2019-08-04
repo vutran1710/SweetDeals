@@ -2,16 +2,12 @@
   steps:
     - name: testing
       exclude: master
-      service: testapp
+      service: sweetdeals
       command: npm run verify
     - name: publish new docker image
-      tag: master
       service: sweetdeals
-      type: push
-      image_name: vutrio/sweetdeals-image-demo
-      image_tag: "{{ .CommitID }}"
       encrypted_dockercfg_path: dockercfg.encrypted
+      command: shellscript.sh publish
     - name: set image app
-      tag: master
       service: kubectl
       command: bash -c "kubectl set image deployment/my-app my-app=vutrio/sweetdeals-image-demo:$CI_COMMIT_ID && kubectl rollout status deployment/my-app"
