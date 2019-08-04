@@ -12,7 +12,7 @@
     "healthcheck": "DOTENV_CONFIG_PATH=.env.test node -r dotenv/config -r ts-node/register --inspect docs/healthcheck",
     "verify": "run-s healthcheck lint cover",
     "docker": "docker-compose up -d",
-    "publish": "./shellscript.sh publish"
+    "publish": ". ./shellscript.sh publish"
   },
   "dependencies": {
     "@types/express": "^4.17.0",
