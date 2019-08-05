@@ -4,9 +4,9 @@ const BaseApi = {
   calc: '/calc'
 }
 
-const Api = Object.keys(BaseApis).reduce((obj, key) => ({
+const Api = Object.keys(BaseApi).reduce((obj, key) => ({
   ...obj,
-  [key]: FixingAPI(BaseApis[key]),
+  [key]: FixingAPI(BaseApi[key]),
 }), {})
 
 export default Api
