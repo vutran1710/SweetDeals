@@ -1,3 +1,4 @@
+import Apis from '@api'
 import {
   DEFAULT_STATE,
   ERROR_MSG,
@@ -63,9 +64,7 @@ export class Calculator extends React.Component {
       headers: { 'Content-Type': 'application/json' }
     }
 
-    const url = process.env.ORIGIN + '/calc'
-
-    fetch(url, requestOptions)
+    fetch(Apis.calc, requestOptions)
       .then(resp => resp.json())
       .then(serverResponseHandler)
       .catch(errorHandler)

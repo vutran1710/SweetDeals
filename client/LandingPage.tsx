@@ -30,7 +30,7 @@ const LazyCalculator = Loadable({
 
 export const LandingPage = () => (
   <Switch>
-    <Route path="/calc" exact={true} component={() => <LazyCalculator />} />
+    <Route path="/calc" exact={true} component={LazyCalculator} />
     <Route path="/" exact={true} component={Index} />
     <Route component={Page404} />
   </Switch>
