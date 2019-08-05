@@ -11,9 +11,6 @@ export function BackendConfig(isProduction) {
     target: 'server@esnext',
     cache: !isProduction,
     hash: false,
-    log: {
-      enabled: !isProduction,
-    },
     plugins: [
       EnvPlugin(process.env),
       JSONPlugin(),
