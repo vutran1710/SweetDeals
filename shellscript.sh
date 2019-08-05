@@ -1,5 +1,7 @@
 #!/bin/bash
-PATH=./node_modules/.bin:$PATH
+set -e
+
+export PATH=./node_modules/.bin:$PATH
 
 function precommit() {
     current_branch=$(git rev-parse --abbrev-ref HEAD)
@@ -12,6 +14,12 @@ function precommit() {
     else
         npm run lint
     fi
+}
+
+function publish() {
+    npm run prod
+    docker build -f Dockerfile.prod -t $CI_COMMIT_ID
+    docker push vutrio/sweetdeals-image-demo:$CI_COMMIT_ID
 }
 
 "$@"
