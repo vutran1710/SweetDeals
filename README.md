@@ -14,8 +14,6 @@
 <a id="org87b6eea"></a>
 
 ## Introduction
-[![Codacy
-Badge](https://api.codacy.com/project/badge/Grade/48662943a8224bd7905e28fbcc9f3ef6)](https://www.codacy.com/app/vutran1710/SweetDeals?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=vutran1710/SweetDeals&amp;utm_campaign=Badge_Grade)
 [![Codeship Status for vutran1710/SweetDeals](https://app.codeship.com/projects/a46692e0-7183-0137-2e01-625d4d4a40bb/status?branch=master)](https://app.codeship.com/projects/348423)
 
 SweetDeals is a complete heavy Javascript/Typescript-oriented application that aims towards easy sharing deals and payment-shares amongst group of friends or collegue. The inspiration came from how my friends in the office used to place bulk-order of fruit drinks after lunch then got troubled in calculating how much each person would pay afterwards.

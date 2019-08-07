@@ -16,10 +16,4 @@ function precommit() {
     fi
 }
 
-function publish() {
-    npm run prod
-    docker build -f Dockerfile.prod -t $CI_COMMIT_ID
-    docker push vutrio/sweetdeals-image-demo:$CI_COMMIT_ID
-}
-
 "$@"
