@@ -8,7 +8,9 @@
     1.  [Development](#orgd25a736)
     2.  [PullRequest & CICD](#orgab6f208)
 
-4.  [A great Medium Story...](#medium-story)
+4.  [Deployment Tutorial](#deploytut)
+
+5.  [A great Medium Story...](#medium-story)
 
 
 <a id="org87b6eea"></a>
@@ -57,7 +59,18 @@ SweetDeals is a complete heavy Javascript/Typescript-oriented application that a
   - [x] Deploy with **Kubernetes**
   - [x] Auto deploy upon merging to *master*
 
-<a id="#medium-story"></a>
+<a id="deploytut"></a>
+
+## Deployment Tutorial
+
+Set Database Secret Env for K8s Database service
+
+``` shell
+$ kubectl create secret generic prod-db-secret --from-file=.env.prod
+```
+
+
+<a id="medium-story"></a>
 
 ## A great Medium Story
 *to be done... once project finished.*

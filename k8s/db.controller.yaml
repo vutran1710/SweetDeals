@@ -16,11 +16,20 @@ spec:
         name: mongo
         env:
           - name: MONGODB_USERNAME
-            value: "root"
+            valueFrom:
+              secretKeyRef:
+                name: prod-db-secret
+                key: MONGODB_USERNAME
           - name: MONGODB_PASSWORD
-            value: "1234"
+            valueFrom:
+              secretKeyRef:
+                name: prod-db-secret
+                key: MONGODB_PASSWORD
           - name: MONGODB_DATABASE
-            value: "prod"
+            valueFrom:
+              secretKeyRef:
+                name: prod-db-secret
+                key: MONGODB_DATABASE
         ports:
         - name: mongo
           containerPort: 27017
