@@ -19,17 +19,17 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: prod-db-secret
-                key: MONGODB_USERNAME
+                key: user
           - name: MONGODB_PASSWORD
             valueFrom:
               secretKeyRef:
                 name: prod-db-secret
-                key: MONGODB_PASSWORD
+                key: password
           - name: MONGODB_DATABASE
             valueFrom:
               secretKeyRef:
                 name: prod-db-secret
-                key: MONGODB_DATABASE
+                key: dbname
         ports:
         - name: mongo
           containerPort: 27017
