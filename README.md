@@ -64,7 +64,7 @@ SweetDeals is a complete heavy Javascript/Typescript-oriented application that a
 
 ## Deployment Tutorial
 
-Set Database Secret Env for K8s Database service
+Set Database Secret for K8s Database service
 
 ``` shell
 $ kubectl create secret generic prod-db-secret --from-literal=user=root --from-literal=password=1234 --from-literal=dbname=prod
@@ -77,6 +77,18 @@ $ kubectl config view --minify --flatten > kubeconfigdata
 $ docker run --rm -it -v $(pwd):/files codeship/env-var-helper cp kubeconfigdata:/root/.kube/config k8s-env
 $ jet encrypt k8s-env k8s-env.encrypted
 $ rm kubeconfigdata k8s-env
+```
+
+Create Docker secret namely **regcred** for K8s to pull the private image
+
+``` shell
+$ kubectl create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=DOCKER_USER --docker-password=DOCKER_PASSWORD --docker-email=DOCKER_EMAIL
+```
+
+Create Docker secret for **Codeship** to pull our private image
+
+``` shell
+$ jet encrypt dockercfg dockercfg.encrypted
 ```
 
 <a id="medium-story"></a>
