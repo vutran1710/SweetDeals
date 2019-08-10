@@ -5,7 +5,7 @@
       "@base/*": ["client/component/base/*"],
       "@base": ["client/component/base/index"],
       "@constant": ["common/constant"],
-      "@api": ["common/api"],
+      "@http": ["common/http"],
       "@container/*": ["client/component/container/*"],
       "@container": ["client/component/container/index"],
       "@be-service": ["/client/service/backend/index"],

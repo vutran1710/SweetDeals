@@ -1,9 +1,9 @@
-import Apis from '@api'
 import {
   DEFAULT_STATE,
   ERROR_MSG,
   OPS,
 } from '@constant'
+import * as http from '@http'
 import * as React from 'react'
 
 export class Calculator extends React.Component {
@@ -37,14 +37,8 @@ export class Calculator extends React.Component {
 
   reset = () => this.setState(DEFAULT_STATE)
 
-  submit = () => {
+  submit = async () => {
     const serverResponseHandler = res => {
-      if (res.error) {
-        throw res.error
-      }
-      if (res.result === null) {
-        throw ERROR_MSG.SERVER_ERROR
-      }
       const display = res.result.toFixed(4)
       this.setState({ ...DEFAULT_STATE, display })
     }
@@ -54,20 +48,7 @@ export class Calculator extends React.Component {
       display: typeof display === 'string' ? display : ERROR_MSG.SERVER_ERROR
     })
 
-    const requestOptions = {
-      method: 'POST',
-      body: JSON.stringify({
-        a: parseInt(this.state.a, 10),
-        b: parseInt(this.state.b, 10),
-        operand: this.state.operand
-      }),
-      headers: { 'Content-Type': 'application/json' }
-    }
-
-    fetch(Apis.calc, requestOptions)
-      .then(resp => resp.json())
-      .then(serverResponseHandler)
-      .catch(errorHandler)
+    await http.calculate(this.state).then(serverResponseHandler).catch(errorHandler)
   }
 
   render() {

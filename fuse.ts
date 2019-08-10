@@ -7,7 +7,7 @@ const isProduction = process.env.NODE_ENV === 'production'
 const alias = {
   '@base': '~/client/component/base',
   '@constant': '~/common/constant',
-  '@api': '~/common/api',
+  '@http': '~/common/http',
   '@container': '~/client/component/container',
   '@be-service': '~/client/service/backend',
   '@fe-service': '~/client/service/frontend',
