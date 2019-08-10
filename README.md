@@ -19,7 +19,8 @@
 
 ## Introduction
 
-SweetDeals is a complete heavy Javascript/Typescript-oriented application that aims towards easy sharing deals and payment-shares amongst group of friends or collegue. The inspiration came from how my friends in the office used to place bulk-order of fruit drinks after lunch then got troubled in calculating how much each person would pay afterwards.
+SweetDeals is a complete heavy Javascript/Typescript-oriented application, built for demonstration & educational
+purposes.
 
 <a id="orgbbaa98d"></a>
 
