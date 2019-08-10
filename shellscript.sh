@@ -16,4 +16,14 @@ function precommit() {
     fi
 }
 
+function publish_latest() {
+    docker build -f Dockerfile.prod -t vutrio/sweetdeals-image-demo:latest \
+           --build-arg PORT=8000 \
+           --build-arg DB=$1 \
+           --build-arg HTML_PATH=build/index \
+           --no-cache .
+
+    docker push vutrio/sweetdeals-image-demo:latest
+}
+
 "$@"
