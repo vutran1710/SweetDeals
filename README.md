@@ -64,6 +64,19 @@ SweetDeals is a complete heavy Javascript/Typescript-oriented application that a
 
 ## Deployment Tutorial
 
+Prepare the very first **image** for the initial deployment with **kubernetes**
+
+``` shell
+$ docker login
+$ docker build -f Dockerfile.prod -t vutrio/sweetdeals-image-demo:latest \
+           --build-arg PORT=8000 \
+           --build-arg DB=$1 \
+           --build-arg HTML_PATH=build/index \
+           --no-cache .
+
+$ docker push vutrio/sweetdeals-image-demo:latest
+```
+
 Set Database Secret for K8s Database service
 
 ``` shell
