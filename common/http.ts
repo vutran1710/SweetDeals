@@ -1,4 +1,4 @@
-const FixingAPI = endpoint => process.env.NODE_ENV === 'production' ? endpoint : `${process.env.ORIGIN}/${endpoint}`
+const FixingAPI = endpoint => process.env.NODE_ENV === 'production' ? endpoint : `${process.env.ORIGIN}${endpoint}`
 
 const Api = {
   calc: FixingAPI('/calc'),
