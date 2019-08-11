@@ -26,23 +26,29 @@
     "express": "^4.17.1",
     "mongoose": "^5.5.15",
     "ramda": "^0.26.1",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-loadable": "^5.5.0",
     "react-router-dom": "^5.0.1"
   },
   "devDependencies": {
+    "@testing-library/react": "^9.0.2",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.7",
     "@types/ramda": "^0.26.9",
     "@types/supertest": "^2.0.7",
     "chai": "^4.2.0",
+    "es6-promise": "^4.2.8",
     "fuse-box": "^3.7.1",
     "husky": "^2.4.1",
+    "isomorphic-fetch": "^2.2.1",
+    "jsdom": "^15.1.1",
+    "jsdom-global": "^3.0.2",
     "mocha": "^6.1.4",
     "node-sass": "^4.12.0",
     "npm-run-all": "^4.1.5",
     "nyc": "^14.1.1",
+    "sinon": "^7.4.1",
     "source-map-support": "^0.5.12",
     "supertest": "^4.0.2",
     "terser": "^4.0.0",
@@ -62,7 +68,8 @@
   "nyc": {
     "include": [
       "server/**",
-      "common/**"
+      "common/**",
+      "client/**"
     ],
     "exclude": [
       "test/**"
@@ -80,26 +87,26 @@
       "html"
     ],
     "check-coverage": true,
-    "branches": 90,
-    "lines": 90,
-    "functions": 90,
-    "statements": 90,
+    "branches": 50,
+    "lines": 50,
+    "functions": 50,
+    "statements": 50,
     "watermarks": {
       "lines": [
-        90,
-        95
+        50,
+        65
       ],
       "functions": [
-        90,
-        95
+        50,
+        65
       ],
       "branches": [
-        90,
-        95
+        50,
+        65
       ],
       "statements": [
-        90,
-        95
+        50,
+        65
       ]
     },
     "sourceMap": true,

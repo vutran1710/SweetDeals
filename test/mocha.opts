@@ -1,7 +1,8 @@
 -r dotenv/config
 -r ts-node/register
 -r tsconfig-paths/register
+-r jsdom-global/register
 --full-trace
 --bail
 --exit
-test/*.spec.ts
+test/*.spec.*
