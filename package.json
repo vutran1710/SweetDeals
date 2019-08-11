@@ -68,7 +68,8 @@
   "nyc": {
     "include": [
       "server/**",
-      "common/**"
+      "common/**",
+      "client/**"
     ],
     "exclude": [
       "test/**"
