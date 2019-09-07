@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "DOTENV_CONFIG_PATH=.env.dev node -r dotenv/config -r ts-node/register --inspect fuse.ts",
-    "prod": "node -r dotenv/config -r ts-node/register fuse.ts",
-    "lint": "tslint --fix -c tslint.json '{common,client,server,test}/**/*.{ts,tsx}'",
+    "prod": "DOTENV_CONFIG_PATH=.env.prod node -r dotenv/config -r ts-node/register fuse.ts",
     "test": "DOTENV_CONFIG_PATH=.env.test mocha --opts test/mocha.local.opts",
     "cover": "DOTENV_CONFIG_PATH=.env.test nyc mocha --opts test/mocha.opts",
     "healthcheck": "DOTENV_CONFIG_PATH=.env.test node -r dotenv/config -r ts-node/register --inspect docs/healthcheck",
+    "lint": "tslint --fix -c tslint.json '{common,client,server,test}/**/*.{ts,tsx}'",
     "verify": "run-s healthcheck lint cover",
     "docker": "docker-compose up -d"
   },
