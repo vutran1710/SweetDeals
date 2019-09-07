@@ -14,7 +14,7 @@ describe('## 1. Get pages', () => {
     agent.get('/')
          .expect(200)
          .end((err, res) => {
-           expect(res.text).to.contain('Hello World')
+           expect(res.text).to.contain('Hello New World')
            done()
          })
   })
