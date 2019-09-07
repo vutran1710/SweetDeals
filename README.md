@@ -80,6 +80,7 @@ Check if config is properly set?
 $ kubectl config view
 ```
 
+PS: *dont forget to save the config/secret files to SemaphoreCI Secrets*
 If ok, set Database Secret for K8s Database service
 
 ``` shell
