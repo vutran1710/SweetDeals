@@ -1,5 +1,5 @@
 import { Calculator } from '@container'
-import * as http from '@http'
+import http from '@http'
 import {
   cleanup,
   fireEvent,

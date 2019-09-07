@@ -1,20 +1,11 @@
-const FixingAPI = endpoint => process.env.NODE_ENV === 'production' ? endpoint : `${process.env.ORIGIN}${endpoint}`
+import wretch from 'wretch'
 
 const Api = {
-  calc: FixingAPI('/calc'),
+  calc: '/calc',
 }
 
-const genericHandler = resp => {
-  if (!resp.ok) {
-    throw resp.json()
-  }
-  return resp.json()
+const http = {
+  calculate: payload => wretch(process.env.ORIGIN + Api.calc).post(payload).json()
 }
 
-export const calculate = payload => fetch(Api.calc, {
-  method: 'POST',
-  body: JSON.stringify(payload),
-  headers: {
-    'Content-Type': 'application/json',
-  }
-}).then(genericHandler)
+export default http

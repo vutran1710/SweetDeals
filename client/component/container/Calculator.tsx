@@ -3,7 +3,7 @@ import {
   ERROR_MSG,
   OPS,
 } from '@constant'
-import * as http from '@http'
+import http from '@http'
 import * as React from 'react'
 
 export class Calculator extends React.Component {
