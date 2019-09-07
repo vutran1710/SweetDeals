@@ -21,6 +21,7 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-loadable": "^5.5.1",
     "@types/react-router-dom": "^4.3.3",
+    "date-fns": "^2.1.0",
     "dotenv": "^8.0.0",
     "es6-template-strings": "^2.0.1",
     "express": "^4.17.1",
