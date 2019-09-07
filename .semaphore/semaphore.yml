@@ -1,0 +1,68 @@
+# Run CI/CD jobs in Docker images:
+# https://docs.semaphoreci.com/article/127-custom-ci-cd-environment-with-docker
+version: v1.0
+name: SweetDeals Pipeline
+
+agent:
+  machine:
+    type: e1-standard-2
+
+blocks:
+  - name: "Run Tests"
+    dependencies: []
+    skip:
+      when: "branch != 'master'"
+    task:
+      agent:
+        machine:
+          type: e1-standard-2
+        containers:
+          - name: main
+            image: semaphoreci/node:10.12
+          - name: testdb
+            image: bitnami/mongodb
+            env_vars:
+              - name: MONGODB_USERNAME
+                value: "root"
+              - name: MONGODB_PASSWORD
+                value: "1234"
+              - name: MONGODB_DATABASE
+                value: "test"
+      jobs:
+        - name: Run tests against testdb
+          commands:
+            - checkout
+            - npm install
+            - npm run verify
+
+  - name: Publish Docker Image
+    dependencies: []
+    skip:
+      when: "branch = 'master'"
+    task:
+      jobs:
+        - name: Build and publish docker image
+          commands:
+            - checkout
+            - cp ~/.env.prod .
+            - echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
+            - docker build -t vutrio/sweetdeals-image-demo:$SEMAPHORE_GIT_SHA .
+            - docker push vutrio/sweetdeals-image-demo:$SEMAPHORE_GIT_SHA
+      secrets:
+        - name: sweetdeals-secrets
+
+  - name: Deploy to K8
+    dependencies: ["Publish Docker Image"]
+    skip:
+      when: "branch = 'master'"
+    task:
+      jobs:
+        - name: Rolling update
+          commands:
+            - kubectl set image deployment/my-app my-app=vutrio/sweetdeals-image-demo:$SEMAPHORE_GIT_SHA
+            - kubectl rollout status deployment/my-app
+      env_vars:
+        - name: KUBECONFIG
+          value: /home/semaphore/.kube/config
+      secrets:
+        - name: sweetdeals-secrets
