@@ -2,6 +2,7 @@ import {
   Loading,
   Page404,
 } from '@base'
+import { format } from 'date-fns'
 import * as React from 'react'
 import * as Loadable from 'react-loadable'
 import {
@@ -10,14 +11,17 @@ import {
   Switch,
 } from 'react-router-dom'
 
-const Index = () => (
-  <div>
-    <h2>Hello World</h2>
-    <Link to="/calc">
-      Click to open Final calculator
-    </Link>
-  </div>
-)
+const Index = () => {
+  const time = format(Date.now(), 'MM/dd/yyyy __ hh:mm')
+  return (
+    <div>
+      <h2>Hello New World</h2>
+      <Link to="/calc" style={{ textDecoration: 'none' }}>
+        Click to open final calculator ({time})
+      </Link>
+    </div>
+  )
+}
 
 const LazyCalculator = Loadable({
   loader: () => import('@container/Calculator'),
