@@ -73,7 +73,14 @@ $ docker build -t vutrio/sweetdeals-image-demo:latest .
 $ docker push vutrio/sweetdeals-image-demo:latest
 ```
 
-Set Database Secret for K8s Database service
+Save the K8s DigitalOcean config as `~/.kube/config`
+Check if config is properly set?
+
+``` shell
+$ kubectl config view
+```
+
+If ok, set Database Secret for K8s Database service
 
 ``` shell
 $ kubectl create secret generic prod-db-secret --from-literal=user=root --from-literal=password=1234 --from-literal=dbname=prod
@@ -83,6 +90,12 @@ Create Docker secret namely **regcred** for K8s to pull the private image
 
 ``` shell
 $ kubectl create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=DOCKER_USER --docker-password=DOCKER_PASSWORD --docker-email=DOCKER_EMAIL
+```
+
+Apply with K8 to launch the fucking App
+
+``` shell
+$ kubectl apply -f k8s/
 ```
 
 <a id="medium-story"></a>
