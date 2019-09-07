@@ -11,7 +11,7 @@ blocks:
   - name: "Run Tests"
     dependencies: []
     skip:
-      when: "branch != 'master'"
+      when: "branch = 'master'"
     task:
       agent:
         machine:
@@ -38,7 +38,7 @@ blocks:
   - name: Publish Docker Image
     dependencies: []
     skip:
-      when: "branch = 'master'"
+      when: "branch != 'master'"
     task:
       jobs:
         - name: Build and publish docker image
@@ -54,7 +54,7 @@ blocks:
   - name: Deploy to K8
     dependencies: ["Publish Docker Image"]
     skip:
-      when: "branch = 'master'"
+      when: "branch != 'master'"
     task:
       jobs:
         - name: Rolling update
