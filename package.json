@@ -11,7 +11,8 @@
     "healthcheck": "DOTENV_CONFIG_PATH=.env.test node -r dotenv/config -r ts-node/register --inspect docs/healthcheck",
     "lint": "tslint --fix -c tslint.json '{common,client,server,test}/**/*.{ts,tsx}'",
     "verify": "run-s healthcheck lint cover",
-    "docker": "docker-compose up -d"
+    "docker": "docker-compose up -d",
+    "k8s": "kubectl apply -f k8s/"
   },
   "dependencies": {
     "@types/express": "^4.17.0",
