@@ -10,7 +10,7 @@ describe('Creating documents', () => {
   const mock = { ...task, result: 3  }
 
   before('Clear all the test document', async () => {
-    await Calculation.deleteMany({ result: 3 })
+    await Calculation.deleteMany({})
     const count = await Calculation.countDocuments()
     expect(count).to.equal(0)
   })
