@@ -30,7 +30,7 @@ purposes.
 
 -   A complete, or **full-stack** so to say, javascript application
     -   **TypeScript** integration - the benefit & the tax
-    -   How **Fuse-Box** can be a agreeable alternative to **webpack**
+    -   How **Fuse-Box** can be an agreeable alternative to **webpack**
     -   Mongodb, ExpressJS, React Server-side Rendering
 
 -   Testing a **full-stack** javasript application
@@ -49,9 +49,9 @@ purposes.
   - [x] Branch **master** must be strictly protected!
   - [x] Feature implementation must be carried out on a separate branch
   - [x] Each commit must be **linted** locally
-  - [x] If dev tries to commit on master branch, use husky to auto switch to a separated feature branch
+  - [x] If dev tries to commit on master branch, use husky to auto switch to a new feature-branch
   - [x] To merge to master branch, a **PullRequest** must be submitted
-  - [ ] Implement frontend test with Mocha & React-testing-library
+  - [x] Implement frontend test with Mocha & React-testing-library
 
 <a id="orgab6f208"></a>
 
@@ -69,28 +69,21 @@ Prepare the very first **image** for the initial deployment with **kubernetes**
 
 ``` shell
 $ docker login
-$ docker build -f Dockerfile.prod -t vutrio/sweetdeals-image-demo:latest \
-           --build-arg PORT=8000 \
-           --build-arg DB=$1 \
-           --build-arg HTML_PATH=build/index \
-           --no-cache .
-
+$ docker build -t vutrio/sweetdeals-image-demo:latest .
 $ docker push vutrio/sweetdeals-image-demo:latest
 ```
 
-Set Database Secret for K8s Database service
+Save the K8s DigitalOcean config as `~/.kube/config`
+Check if config is properly set?
+
+``` shell
+$ kubectl config view
+```
+
+If ok, set Database Secret for K8s Database service
 
 ``` shell
 $ kubectl create secret generic prod-db-secret --from-literal=user=root --from-literal=password=1234 --from-literal=dbname=prod
-```
-
-Create K8s secret config with **codeship**
-
-``` shell
-$ kubectl config view --minify --flatten > kubeconfigdata
-$ docker run --rm -it -v $(pwd):/files codeship/env-var-helper cp kubeconfigdata:/root/.kube/config k8s-env
-$ jet encrypt k8s-env k8s-env.encrypted
-$ rm kubeconfigdata k8s-env
 ```
 
 Create Docker secret namely **regcred** for K8s to pull the private image
@@ -99,10 +92,10 @@ Create Docker secret namely **regcred** for K8s to pull the private image
 $ kubectl create secret docker-registry regcred --docker-server=https://index.docker.io/v1/ --docker-username=DOCKER_USER --docker-password=DOCKER_PASSWORD --docker-email=DOCKER_EMAIL
 ```
 
-Create Docker secret for **Codeship** to pull our private image
+Apply with K8 to launch the fucking App
 
 ``` shell
-$ jet encrypt dockercfg dockercfg.encrypted
+$ kubectl apply -f k8s/
 ```
 
 <a id="medium-story"></a>
