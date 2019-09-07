@@ -15,7 +15,7 @@ const Index = () => {
   const time = format(Date.now(), 'MM/dd/yyyy __ hh:mm')
   return (
     <div>
-      <h2>Hello World</h2>
+      <h2>Hello New World</h2>
       <Link to="/calc" style={{ textDecoration: 'none' }}>
         Click to open final calculator ({time})
       </Link>
