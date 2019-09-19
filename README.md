@@ -1,4 +1,3 @@
-[![Codeship Status for vutran1710/SweetDeals](https://app.codeship.com/projects/a46692e0-7183-0137-2e01-625d4d4a40bb/status?branch=master)](https://app.codeship.com/projects/348423)
 
 # Table of Contents
 
