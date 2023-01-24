@@ -43,7 +43,7 @@
     "@types/supertest": "^2.0.7",
     "chai": "^4.2.0",
     "es6-promise": "^4.2.8",
-    "fuse-box": "^3.7.1",
+    "fuse-box": "^4.0.0",
     "husky": "^2.4.1",
     "isomorphic-fetch": "^2.2.1",
     "jsdom": "^16.5.0",
