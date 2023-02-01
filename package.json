@@ -26,7 +26,7 @@
     "dotenv": "^8.0.0",
     "es6-template-strings": "^2.0.1",
     "express": "^4.17.3",
-    "mongoose": "^5.7.5",
+    "mongoose": "^5.13.15",
     "ramda": "^0.26.1",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
